@@ -1,0 +1,142 @@
+@CHARSET "UTF-8";
+﻿@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+@media screen and (min-width: 401px) and (max-width: 1100px) {
+              margin:0; padding:0;
+            }
+body{
+	padding:0;
+	margin:0;
+	font-family: Georgia,sans-serif;
+}
+
+
+.a {
+	display: block;
+	overflow: hidden;
+	margin: 0;
+	margin-right: 0px;
+	max-width: 1195px;
+	height: 689px;
+	border: 0;
+	padding: 0;
+	
+}
+
+.prof_section {
+	float: left;
+	height: 100%;
+	width: 20%;
+	background-color: #d6cbae;
+	margin: 0;
+	
+}
+
+.img_section {
+	height: 27%;
+	width: 100%;
+	margin: 0;
+}
+
+.info_section {
+	height: 70%;
+	width: 100%;
+	margin: 0;
+	text-align: center;
+		position:relative;
+}
+
+.photo_section {
+	float: left;
+	width: 80%;
+	height: 100%;
+	background-color: #fcfbf5;
+	margin: 0;
+}
+
+.al_pr_img {
+	margin: 0 auto;
+	width: 180px;
+	height: 180px;
+	background-image: url('sample.jpg');
+	border-radius: 100px;
+	-moz-border-radius: 100px;
+	-webkit-border-radius: 100px;
+	-ms-border-radius: 100px;
+	-khtml-border-radius: 100px;
+	-o-border-radius: 100px;
+	border: 1px solid #e4e4e4;
+		font-family: 'Hanna', sans-serif;
+}
+
+#album_title {
+	height: 8%;
+	width: 70%;
+	border-bottom: 3px solid  #013033;
+	border-top: 3px solid  #013033;
+	margin: 12px auto;
+	line-height: 2;
+}
+
+#album_title h2 {
+	color: #013033;
+	font-weight: 900px;
+	text-align: center;
+	margin: 2px;
+	font-family: Georgia,sans-serif;
+}
+
+.info_section h3 {
+	margin: 0;
+	color:#013033;
+	font-family: Georgia,sans-serif;
+	line-height: 1.5;
+}
+
+#ment {
+	width:100%;
+	height:25%;
+	text-align: center;
+	position:absolute; 
+	bottom:0px;
+	background-color: #012123;
+	
+}
+
+#ment p{
+	font-weight: 900;
+	margin:12px;
+	line-height:10px;
+	font-size: 19px;
+	color: #d6cbae;
+	line-height:10px;
+	font-family: Georgia,sans-serif;
+	letter-spacing: -1px;
+}
+
+/* #video{ */
+/* 	width: 100%; */
+/* 	height: 44%; */
+/* 	position:absolute; */
+/* 	bottom:0; */
+/* 	background-color: #003f44; */
+/* } */
+.demo-wrap {
+	  max-width: 960px;
+	  margin: 0 auto;
+	  padding: 15px;
+	}
+
+	.button {
+	  text-decoration: none;
+	  color: #F0353A;
+	  border: 2px solid #F0353A;
+	  padding: 6px 10px;
+	  display: inline-block;
+	  font-size: 18px;
+	}
+
+	.button:hover {
+	  background: #F0353A;
+	  color: #fff;
+	}
+

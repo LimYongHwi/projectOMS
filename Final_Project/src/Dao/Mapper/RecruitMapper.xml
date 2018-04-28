@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="Dao.RecruitDao">
+    
+<!--     public int insertRecruit(Recruit recruit); -->
+    <insert id="insertRecruit" parameterType="RecruitVO">
+    INSERT INTO RECRUIT VALUES(
+    REC_SEQ.NEXTVAL,
+    #{REC_TITLE,jdbcType=VARCHAR}, 
+    #{REC_CONTENT,jdbcType=VARCHAR},
+    #{REC_FILE,jdbcType=VARCHAR},
+    #{M_ID,jdbcType=VARCHAR},
+    #{REC_DESTINATION,jdbcType=VARCHAR},
+    #{REC_MEMBER_COUNT,jdbcType=INTEGER},
+    'ing',
+    #{REC_START,jdbcType=DATE},
+	#{REC_END,jdbcType=DATE},
+    #{REC_GENDER,jdbcType=CHAR},
+    #{REC_VIEWS,jdbcType=INTEGER},
+    <choose>
+    <when test="REC_CREATE_DATE != null">
+    #{REC_CREATE_DATE,jdbcType=DATE},</when>
+    <otherwise>SYSDATE,</otherwise>
+    </choose>
+    <choose>
+    <when test="REC_UPDATE_DATE != null">
+    #{REC_UPDATE_DATE,jdbcType=DATE} ,</when>
+    <otherwise>SYSDATE,</otherwise>
+    </choose>
+    #{REC_DELETE_DATE,jdbcType=DATE})
+    </insert>
+	
+<!-- 	public int updateRecruit(Recruit recruit); -->
+    <update id="updateRecruit" parameterType="RecruitVO">
+    UPDATE RECRUIT SET
+    REC_TITLE=#{REC_TITLE,jdbcType=VARCHAR},
+    REC_CONTENT=#{REC_CONTENT,jdbcType=VARCHAR},
+    REC_FILE=#{REC_FILE,jdbcType=VARCHAR},
+    REC_MEMBER_COUNT=#{REC_MEMBER_COUNT,jdbcType=INTEGER},
+	REC_DESTINATION=#{REC_DESTINATION,jdbcType=VARCHAR},
+    REC_START=#{REC_START,jdbcType=DATE},
+    REC_STATE=#{REC_STATE,jdbcType=DATE},
+	REC_END=#{REC_END,jdbcType=DATE},
+	REC_VIEWS=#{REC_VIEWS,jdbcType=INTEGER},
+    REC_GENDER=#{REC_GENDER,jdbcType=CHAR},
+    REC_UPDATE_DATE=SYSDATE
+     WHERE REC_NO=#{REC_NO,jdbcType=INTEGER}
+    </update>
+    
+<!--     public int deleteRecruit(Recruit recruit); -->
+	<update id="deleteRecruit" parameterType="RecruitVO">
+	UPDATE RECRUIT SET REC_DELETE_DATE=SYSDATE WHERE REC_NO=#{REC_NO}
+	
+	</update>
+	
+<!-- 	public int selectOneRecruit(Recruit recruit); -->
+	<select id="selectOneRecruit" parameterType="RecruitVO" resultType="RecruitVO">
+	SELECT * FROM RECRUIT WHERE REC_NO=#{REC_NO}
+	</select>
+	<select id="recseqcheck" resultType="int">
+	select REC_SEQ.currval from dual
+	</select>
+	
+	
+	
+<!-- 	//모집게시판 리스트 뿌려주기 , StartPage, endPage , 등등 받아오기  -->
+<!-- 	public ArrayList<Recruit> getListRecruit(HashMap<String,Object> params); -->
+	<select id="getListRecruit" parameterType="java.util.HashMap" resultType="RecruitVO">
+	SELECT * FROM ( SELECT ROWNUM AS RN, A.* FROM(
+	SELECT * FROM RECRUIT WHERE 1 = 0
+		<if test="REC_TITLE != null">
+		    OR REC_TITLE LIKE '%${REC_TITLE}%'
+		</if>
+		<if test="REC_CONTENT != null">
+		    OR REC_CONTENT LIKE '%${REC_CONTENT}%'
+		</if>
+		<if test="M_ID != null">
+        	OR M_ID LIKE '%${M_ID}%'
+		</if>
+		<if test="type == 0">
+				    or 1=1	   
+		</if>
+		<if test="REC_DESTINATION != null">
+			AND REC_DESTINATION LIKE '%${REC_DESTINATION}%'
+		</if>
+		<if test="REC_GENDER != null">
+			AND REC_GENDER LIKE '${REC_GENDER}'
+		</if>
+		<if test="REC_STATE != null">
+			AND REC_STATE LIKE '%${REC_STATE}%'
+		</if>		
+		<if test="REC_NO != null">
+			AND REC_NO = #{REC_NO}
+		</if>
+		<if test="startdate != null">
+		   and REC_CREATE_DATE 
+      	  between #{startdate} and #{enddate}
+		</if>
+		AND REC_DELETE_DATE IS NULL
+         order by REC_NO DESC)
+         A 
+         )
+         WHERE RN BETWEEN #{STARTRN} AND #{ENDRN}
+         
+	</select>
+	<select id="getCount" resultType="int" parameterType="java.util.HashMap">
+ SELECT count(*) FROM ( SELECT ROWNUM AS RN, A.* FROM(
+	SELECT * FROM RECRUIT WHERE 1 = 0
+		<if test="REC_TITLE != null">
+		    OR REC_TITLE LIKE '%${REC_TITLE}%'
+		</if>
+		<if test="REC_CONTENT != null">
+		    OR REC_CONTENT LIKE '%${REC_CONTENT}%'
+		</if>
+		<if test="M_ID != null">
+        	OR M_ID LIKE '%${M_ID}%'
+		</if>
+		<if test="type == 0">
+				    or 1=1	   
+		</if>
+		<if test="REC_DESTINATION != null">
+			AND REC_DESTINATION LIKE '%${REC_DESTINATION}%'
+		</if>
+		<if test="REC_GENDER != null">
+			AND REC_GENDER LIKE '${REC_GENDER}'
+		</if>
+		<if test="REC_STATE != null">
+			AND REC_STATE LIKE '%${REC_STATE}%'
+		</if>		
+		<if test="REC_NO != null">
+			AND REC_NO = #{REC_NO}
+		</if>
+		<if test="REC_START != null">
+		   and REC_START 
+      	  between #{REC_START} and #{REC_END}
+		</if>
+		AND REC_DELETE_DATE IS NULL
+         order by REC_NO DESC)
+         A 
+         )
+         
+	</select>
+	
+	
+<!--//해쉬맵으로 받되 모집게시판 번호와 멤버 아이디 를 함께 저장,, 기본으로 확정여부는 false>>(0,1) -->
+<!--	public int insertRecruit_Apply(HashMap<String,Object> params);-->
+	<insert id="insertRecruit_Apply" parameterType="Recruit_ApplyVO">
+	INSERT INTO RECRUIT_APPLY VALUES(
+	REC_APPLY_SEQ.NEXTVAL,
+	#{REC_NO,jdbcType=VARCHAR},
+	#{REC_APPLY_CONFIRM,jdbcType=CHAR},
+	#{M_ID,jdbcType=VARCHAR},
+	<choose>
+	<when test="REC_APPLY_CREATE_DATE!=null">
+	#{REC_APPLY_CREATE_DATE,jdbcType=DATE},	
+	</when>
+	<otherwise>
+	SYSDATE,
+	</otherwise>
+	</choose>
+	#{REC_APPLY_UPDATE_DATE,jdbcType=DATE},	
+	#{REC_APPLY_DELETE_DATE,jdbcType=DATE}
+	)
+	</insert>
+	
+	<!--public int updateRecruit_Apply(HashMap<String,Object> params);-->
+	<update id="updateRecruit_Apply" parameterType="Recruit_ApplyVO">
+	UPDATE RECRUIT_APPLY SET
+	REC_APPLY_CONFIRM=#{REC_APPLY_CONFIRM,jdbcType=VARCHAR},
+	REC_APPLY_UPDATE_DATE=SYSDATE
+	WHERE REC_APPLY_NO=#{REC_APPLY_NO,jdbcType=INTEGER}
+	</update>
+	<!--public int deleteRecruit_Apply(HashMap<String,Object> params); -->
+	<delete id="deleteRecruit_Apply" parameterType="Recruit_ApplyVO">
+	UPDATE RECRUIT_APPLY SET
+	REC_APPLY_DELETE_DATE=SYSDATE
+	WHERE REC_APPLY_NO=#{REC_APPLY_NO,jdbcType=INTEGER}
+	</delete>	
+	
+	<select id="getRecruit_Apply" parameterType="Recruit_ApplyVO" resultType="Recruit_ApplyVO">
+	SELECT * FROM RECRUIT_APPLY WHERE M_ID = #{M_ID,jdbcType=VARCHAR}
+	AND
+	REC_NO = #{REC_NO ,jdbcType=INTEGER}
+	AND REC_APPLY_DELETE_DATE IS NULL
+	</select>
+	
+	<!--//확정된 인원수 뱉어줄꺼 .. count()함수사용
+	public int getApplyCount(HashMap<String,Object> params);-->
+	<select id="getApplyCount" parameterType="Recruit_ApplyVO" resultType="int">
+	
+	SELECT COUNT(*) FROM( 
+	SELECT ROWNUM AS RN, A.* FROM(
+	SELECT * FROM RECRUIT_APPLY 
+	WHERE REC_NO=#{REC_NO}
+	  AND REC_APPLY_CONFIRM LIKE '%Y%'
+	  AND REC_APPLY_DELETE_DATE IS NULL
+	  )
+     A 
+      )
+	</select>
+	
+	
+	
+	<!--//신청한 인원수 뱉어줄꺼 .. count()함수사용
+	public int getRecruit_ApplyCount(HashMap<String,Object> params);-->
+	<select id="getRecruit_ApplyCount" parameterType="java.util.HashMap" resultType="int">
+	
+	SELECT COUNT(*) FROM( 
+	SELECT ROWNUM AS RN, A.* FROM(
+	SELECT * FROM RECRUIT_APPLY 
+	WHERE REC_NO=#{REC_NO}
+	  AND REC_APPLY_DELETE_DATE IS NULL)
+         A 
+         )
+	</select>
+	
+	<!-- //신청한 리스트 뱉어줄놈
+	public ArrayList<Recruit_Apply> getRecruit_ApplyList(HashMap<String,Object> params) -->
+		<select id="getRecruit_ApplyList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT * FROM ( 
+		SELECT ROWNUM AS RN, A.* FROM(
+		SELECT * FROM RECRUIT_APPLY WHERE REC_NO=#{REC_NO}
+	 	 AND REC_APPLY_DELETE_DATE IS NULL)
+         A 
+         )
+         WHERE RN BETWEEN #{STARTRN} AND #{ENDRN}
+	  </select>
+	
+<!-- 	 //댓글부분.. -->
+<!-- public Recruit_ReplyVO selectRec_Rep(Recruit_ReplyVO rec_rep); -->
+<select id="selectRec_Rep" parameterType="Recruit_ReplyVO" resultType="Recruit_ReplyVO">
+		SELECT * FROM RECRUIT_REPLY WHERE RECRUIT_REPLY_NO=#{RECRUIT_REPLY_NO}
+</select>
+<!-- 	public int insertRec_Rep(Recruit_ReplyVO rec_rep); -->
+<insert id="insertRec_Rep" parameterType="Recruit_ReplyVO">
+		INSERT INTO RECRUIT_REPLY VALUES(
+		REC_REP_SEQ.nextval,
+		#{RECRUIT_REPLY_CONTENT,jdbcType=VARCHAR},
+		#{M_ID,jdbcType=VARCHAR},
+		#{REC_NO,jdbcType=INTEGER},
+		#{PARENT_REC_REPLY_NO,jdbcType=INTEGER},
+		#{RECRUIT_REPLY_CREATE_DATE,jdbcType=DATE},
+		#{RECRUIT_REPLY_UPDATE_DATE,jdbcType=DATE},
+		#{RECRUIT_REPLY_DELETE_DATE,jdbcType=DATE}
+		)
+		
+</insert>
+
+<!-- 	public int updateRec_Rep(Recruit_ReplyVO rec_rep); -->
+<update id="updateRec_Rep" parameterType="Recruit_ReplyVO">
+		UPDATE RECRUIT_REPLY SET(
+		RECRUIT_REPLY_CONTENT=#{RECRUIT_REPLY_CONTENT,jdbcType=VARCHAR},
+		RECRUIT_REPLY_CREATE_DATE=#{RECRUIT_REPLY_CREATE_DATE,jdbcType=DATE},
+		RECRUIT_REPLY_UPDATE_DATE=SYSDATE,
+		) WHERE RECRUIT_REPLY_NO=#{RECRUIT_REPLY_NO,jdbcType=INTEGER}
+</update>
+<!-- 	public int deleteRec_Rep(Recruit_ReplyVO rec_rep); -->
+<update id="deleteRec_Rep" parameterType="Recruit_ReplyVO">
+		UPDATE RECRUIT_REPLY SET(
+		RECRUIT_REPLY_DELETE_DATE=SYSDATE,
+		) WHERE RECRUIT_REPLY_NO=#{RECRUIT_REPLY_NO,jdbcType=INTEGER}
+</update>
+<!-- 	public ArrayList<HashMap<String,Object>> getRec_RepList(HashMap<String, Object> params); -->
+	<select id="getRec_RepList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT * FROM ( SELECT ROWNUM AS RN, A.* FROM(
+		SELECT LEVEL, B.* FROM RECRUIT_REPLY B WHERE 1 = 0
+		OR REC_NO = #{REC_NO}
+		AND RECRUIT_REPLY_DELETE_DATE IS NULL
+		START WITH PARENT_REC_REPLY_NO=0
+		CONNECT BY PRIOR RECRUIT_REPLY_NO = PARENT_REC_REPLY_NO
+		ORDER SIBLINGS BY RECRUIT_REPLY_NO desc)
+         A 
+         )
+         WHERE RN BETWEEN #{STARTRN} AND #{ENDRN}
+         </select>
+         
+<!-- 	public int getRec_RepCount(HashMap<String,Object> params);  -->
+	  	<select id="getRec_RepCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT count(*) FROM (SELECT A.* FROM(
+		SELECT LEVEL, B.* FROM RECRUIT_REPLY B WHERE 1 = 0
+		OR REC_NO = #{REC_NO}
+		AND RECRUIT_REPLY_DELETE_DATE IS NULL
+		START WITH PARENT_REC_REPLY_NO=0
+		CONNECT BY PRIOR RECRUIT_REPLY_NO = PARENT_REC_REPLY_NO
+		ORDER SIBLINGS BY RECRUIT_REPLY_NO desc)
+         A 
+         )
+         </select>
+	  
+	  
+	  
+    </mapper>

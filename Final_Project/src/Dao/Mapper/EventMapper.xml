@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="Dao.EventDao">
+<!--    //멤버단. -->
+<!-- 	public int insertEvent(EventVO event); -->
+	<insert id="insertEvent" parameterType="EventVO">
+	INSERT INTO EVENT VALUES
+	(
+	EVT_SEQ.NEXTVAL,      
+	#{EVT_TITLE,jdbcType=VARCHAR},
+	#{EVT_CONTENT,jdbcType=VARCHAR},
+	#{EVT_FILE,jdbcType=VARCHAR},
+	<choose>
+	<when test="EVT_END==null">
+	'Y',
+	</when>
+	<otherwise>
+	#{EVT_END,jdbcType=CHAR},
+	</otherwise>	
+	</choose>
+	#{EVT_VIEW,jdbcType=INTEGER},
+	<choose>
+	<when test="EVT_CREATE_DATE!=null">
+	#{EVT_CREATE_DATE,jdbcType=DATE}, 
+	SYSDATE,
+	</when>
+	<otherwise>
+	SYSDATE,
+	#{EVT_UPDATE_DATE,jdbcType=DATE},
+	</otherwise>
+	</choose>
+	#{EVT_DELETE_DATE,jdbcType=DATE}
+	)
+	</insert>
+	
+<!-- 	//업데이트 -->
+<!-- 	public int updateEvent(EventVO event); -->
+	<update id="updateEvent" parameterType="EventVO">
+		UPDATE EVENT SET 
+	EVT_TITLE=#{EVT_TITLE,jdbcType=VARCHAR},
+	EVT_CONTENT=#{EVT_CONTENT,jdbcType=VARCHAR},
+	EVT_FILE=#{EVT_FILE,jdbcType=VARCHAR},
+	EVT_END=#{EVT_END,jdbcType=CHAR},
+	EVT_VIEW=#{EVT_VIEW,jdbcType=INTEGER},   
+	EVT_UPDATE_DATE=#{EVT_UPDATE_DATE,jdbcType=DATE}
+	WHERE EVT_NO=#{EVT_NO}
+	</update>
+
+<!-- 	//삭제 -->
+<!-- 	public int deleteEvent(EventVO event); -->
+
+	<update id="deleteEvent" parameterType="EventVO">
+	UPDATE EVENT SET 
+	EVT_DELETE_DATE=SYSDATE	
+	WHERE EVT_NO=#{EVT_NO}
+	</update>
+
+	
+<!-- 	//하나뽑기 -->
+<!-- 	public EventVO selectOneEvent(EventVO event); -->
+ 	<select id="selectOneEvent" parameterType="EventVO" resultType="EventVO">
+ 	SELECT * FROM EVENT WHERE EVT_NO=#{EVT_NO}
+ 	</select>
+
+	
+<!-- 	//리스트뽑기 -->
+<!-- 	public ArrayList<hashMap> getEventList(HashMap<String, Object> params); -->
+	<select id="getEventList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+ 	SELECT * FROM (
+ 	SELECT ROWNUM AS RN, A.* FROM(
+ 	SELECT * FROM EVENT 
+ 	WHERE 1=0
+ 	<if test="EVT_TITLE != NULL">
+ 	OF EVT_TITLE LIKE '%${EVT_TITLE}%'
+ 	</if>
+ 	<if test="EVT_CONTENT != null">
+			OR EVT_CONTENT LIKE '%${EVT_CONTENT}%'
+	</if>
+	<if test="type == 0">
+			OR 1=1
+	</if>
+	<if test="EVT_END != null">
+			AND EVT_END LIKE '%${EVT_END}%'
+	</if>
+	<if test="EVT_FILE != null">
+			AND EVT_FILE IS NOT NULL
+	</if>
+	<if test="startdate != null">
+			AND EVT_CREATE_DATE
+			between #{startdate} and #{enddate}
+	</if>
+			AND EVT_DELETE_DATE IS NULL
+		order by EVT_NO DESC)
+		A
+ 	)WHERE RN BETWEEN #{STARTRN} AND #{ENDRN}
+ 	</select>
+	
+<!-- 	//시퀀스에 다음번호 뽑을놈 -->
+<!-- 	public int getEventSeqNum(); -->
+	<select id="getEventSeqNum" resultType="int">
+ 	SELECT EVT_SEQ.currval FROM dual
+ 	</select>
+	
+<!-- 	// 전체 게시물 검색조건에 맞는 놈 카운트 -->
+<!-- 	public int getCountEvent(HashMap<String, Object> params); -->
+<select id="getCountEvent" parameterType="java.util.HashMap" resultType="int">
+ 	SELECT COUNT(*) FROM (
+ 	SELECT ROWNUM AS RN, A.* FROM(
+ 	SELECT * FROM EVENT 
+ 	WHERE 1=0
+ 	<if test="EVT_TITLE != NULL">
+ 	OF EVT_TITLE LIKE '%${EVT_TITLE}%'
+ 	</if>
+ 	<if test="EVT_CONTENT != null">
+			OR EVT_CONTENT LIKE '%${EVT_CONTENT}%'
+	</if>
+	<if test="type == 0">
+			OR 1=1
+	</if>
+	<if test="EVT_END != null">
+			AND EVT_END LIKE '%${EVT_END}%'
+	</if>
+	<if test="startdate != null">
+			AND EVT_CREATE_DATE
+			between #{startdate} and #{enddate}
+	</if>
+			AND EVT_DELETE_DATE IS NULL
+		order by EVT_NO DESC)
+		A
+ 	) 	
+ 	</select>
+
+
+
+
+  </mapper>

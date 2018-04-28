@@ -1,0 +1,42 @@
+@CHARSET "EUC-KR";
+body{
+text-align:center;	
+margin : 0 auto;
+}
+.body {
+width:1060px;
+text-align:center;
+margin :0 auto;
+display: -webkit-inline-box;
+}
+.section{
+    width: 80%;
+    text-align: -webkit-left;
+    margin-left: 35px;
+}
+.section #title{
+font-size: 36px;
+text-align:left;
+   margin: 15px 0 0 30px;
+}
+.section #title_sub{
+font-size: 15px;
+text-align:left;
+   margin: 3px 0 0 30px;
+   color:#b5b5b5;
+}
+
+dt{
+width:20%;
+text-align:center;
+padding:0;
+float:left;
+}
+dd{
+width:80%;
+margin:10px 0 10px 0;
+padding:0;
+}
+table{
+text-align: center;
+}

@@ -26,36 +26,36 @@ margin : 0;
 margin:0;
 padding : 0;
 }
-ul{
+.sidevar ul{
 text-align: -webkit-left;
 list-style: none;
     margin: 0px 0px 0px 25px;
 padding : 0;
 }
-li{
+.sidevar li{
 margin-top : 10px;
 }
-li a{
+.sidevar li a{
 text-decoration: none;
     color: black;
 }
-    
+ #selected{
+ background:gray;
+ }
     
 </style>
+
 <body>
 <div class="sidevar">
 <div class="title_tb">
-<p style="font-size: 13px;">OH MY SOULMATE</p>
-<p class="title" style="font-size: 30px;">고객센터</p>
+<p style="font-size: 13px; color:white">OH MY SOULMATE</p>
+<p class="title" style="font-size: 30px; color:white">고객센터</p>
 </div>
 <ul>
-<li>
-<a href='faq_main.do'> FAQ </a>
-</li>
-<li class="sub_service_center">
+<li class="sub_review">
 <a href='service_center_main.do'> 1:1 문의하기 </a>
 </li>
-<li class="sub_event"><a href='event_main.do'>이벤트</a></li>
+<li class="sub_info"><a href='event_main.do'>이벤트</a></li>
 </ul>
 </div>
 </body>

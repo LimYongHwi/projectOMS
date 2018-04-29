@@ -39,5 +39,9 @@ public interface RecruitDao {
 	public int deleteRec_Rep(Recruit_ReplyVO rec_rep);
 	public ArrayList<HashMap<String,Object>> getRec_RepList(HashMap<String, Object> params);
 	public int getRec_RepCount(HashMap<String,Object> params);
+	//자식노드 갯수체크
+	public int levelcheck(Recruit_ReplyVO rec_rep);
+	
+	
 	
 }

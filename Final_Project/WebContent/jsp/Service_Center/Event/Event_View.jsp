@@ -12,7 +12,7 @@
 <body>
 <jsp:include page="../../Header_tab1.jsp"></jsp:include>
 	<div class="body">
-	<jsp:include page="../Service_Center_Side.jsp"></jsp:include>
+	<jsp:include page="../../sidevar_3.jsp"></jsp:include>
 	<div class="section">
 	<p id="subject">이벤트게시판</p>
 	<p id="subject_sub">오마쏘의 이벤트에 참여해보세요!</p>

@@ -241,7 +241,14 @@
 		#{M_ID,jdbcType=VARCHAR},
 		#{REC_NO,jdbcType=INTEGER},
 		#{PARENT_REC_REPLY_NO,jdbcType=INTEGER},
-		#{RECRUIT_REPLY_CREATE_DATE,jdbcType=DATE},
+		<choose>
+		<when test="RECRUIT_REPLY_CREATE_DATE==null">
+		SYSDATE,
+		</when>
+		<otherwise>
+		#{RECRUIT_REPLY_CREATE_DATE,jdbcType=DATE},		
+		</otherwise>
+		</choose>
 		#{RECRUIT_REPLY_UPDATE_DATE,jdbcType=DATE},
 		#{RECRUIT_REPLY_DELETE_DATE,jdbcType=DATE}
 		)
@@ -250,17 +257,17 @@
 
 <!-- 	public int updateRec_Rep(Recruit_ReplyVO rec_rep); -->
 <update id="updateRec_Rep" parameterType="Recruit_ReplyVO">
-		UPDATE RECRUIT_REPLY SET(
+		UPDATE RECRUIT_REPLY SET
 		RECRUIT_REPLY_CONTENT=#{RECRUIT_REPLY_CONTENT,jdbcType=VARCHAR},
 		RECRUIT_REPLY_CREATE_DATE=#{RECRUIT_REPLY_CREATE_DATE,jdbcType=DATE},
-		RECRUIT_REPLY_UPDATE_DATE=SYSDATE,
-		) WHERE RECRUIT_REPLY_NO=#{RECRUIT_REPLY_NO,jdbcType=INTEGER}
+		RECRUIT_REPLY_UPDATE_DATE=SYSDATE
+		WHERE RECRUIT_REPLY_NO=#{RECRUIT_REPLY_NO,jdbcType=INTEGER}
 </update>
 <!-- 	public int deleteRec_Rep(Recruit_ReplyVO rec_rep); -->
 <update id="deleteRec_Rep" parameterType="Recruit_ReplyVO">
-		UPDATE RECRUIT_REPLY SET(
-		RECRUIT_REPLY_DELETE_DATE=SYSDATE,
-		) WHERE RECRUIT_REPLY_NO=#{RECRUIT_REPLY_NO,jdbcType=INTEGER}
+		UPDATE RECRUIT_REPLY SET
+		RECRUIT_REPLY_DELETE_DATE=SYSDATE
+		WHERE RECRUIT_REPLY_NO=#{RECRUIT_REPLY_NO,jdbcType=INTEGER}
 </update>
 <!-- 	public ArrayList<HashMap<String,Object>> getRec_RepList(HashMap<String, Object> params); -->
 	<select id="getRec_RepList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
@@ -289,6 +296,10 @@
          )
          </select>
 	  
-	  
-	  
+	  <select id="levelcheck" parameterType="Recruit_ReplyVO" resultType="int">
+	  	SELECT COUNT(*) FROM RECRUIT_REPLY where RECRUIT_REPLY_DELETE_DATE is null
+		start with RECRUIT_REPLY_NO=#{RECRUIT_REPLY_NO}
+		connect by prior recruit_reply_no=PARENT_REC_REPLY_NO
+	  </select>	 
+	   
     </mapper>

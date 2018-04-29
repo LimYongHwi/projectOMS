@@ -233,28 +233,41 @@ public class Recruit_ServiceImp implements Recruit_Service{
 	@Override
 	public int writeReply(Recruit_ReplyVO rec_rep) {
 		// TODO Auto-generated method stub
+		if(rec_rep.getM_ID()==null){
+			return -1;
+		}
 		return recDao.insertRec_Rep(rec_rep);
 	}
 	
 	@Override
 	public int updateReply(Recruit_ReplyVO rec_rep) {
 		// TODO Auto-generated method stub
-		Recruit_ReplyVO get = getReply(rec_rep);
-		if(get.getM_ID().equals(rec_rep.getM_ID())){
-			return recDao.updateRec_Rep(rec_rep);			
+		try {
+			Recruit_ReplyVO get = getReply(rec_rep);
+			if(get.getM_ID().equals(rec_rep.getM_ID())){
+				get.setRECRUIT_REPLY_CONTENT(rec_rep.getRECRUIT_REPLY_CONTENT());
+				return recDao.updateRec_Rep(get);			
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-		else
 		return -1;
+		
 	}
 	
 	@Override
 	public int deleteReply(Recruit_ReplyVO rec_rep) {
 		// TODO Auto-generated method stub
-		Recruit_ReplyVO get = getReply(rec_rep);
-		if(get.getM_ID().equals(rec_rep.getM_ID())){
-			return recDao.deleteRec_Rep(rec_rep);			
+		try {
+			System.out.println("삭제이전"+rec_rep);
+			Recruit_ReplyVO get = getReply(rec_rep);
+			System.out.println("삭제검색"+get);
+			if(get.getM_ID().equals(rec_rep.getM_ID())){
+				return recDao.deleteRec_Rep(rec_rep);			
+			}
+		} catch (NullPointerException e) {
+			// TODO: handle exception
 		}
-		else
 		return -1;
 	}
 	
@@ -276,6 +289,11 @@ public class Recruit_ServiceImp implements Recruit_Service{
 	public int getLastReply(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
 		return (recDao.getRec_RepCount(params)-1)/10+1;
+	}
+	@Override
+	public int getNodeCount(Recruit_ReplyVO rec_rep) {
+		// TODO Auto-generated method stub
+		return recDao.levelcheck(rec_rep);
 	}
 	
 	

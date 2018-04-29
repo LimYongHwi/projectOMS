@@ -444,14 +444,10 @@ public class Menu1_Controller {
 	}
 	
 	
-	
-	
-	
-	
-	@RequestMapping(value="getREC_REP.do", method=RequestMethod.GET)
+	@RequestMapping(value="getREC_REP.do", method={RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
-	public void getREC_REP(@RequestParam(defaultValue="1") int page,
-			int REC_NO,
+	public void getREC_REP(int REC_NO,
+			@RequestParam(defaultValue="1") int page,
 			HttpServletResponse resp){	
 		resp.setCharacterEncoding("UTF-8");
 		HashMap<String, Object> params = new HashMap<>();
@@ -466,15 +462,38 @@ public class Menu1_Controller {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-		@RequestMapping(value="writeREC_REP.do", method=RequestMethod.GET)
+		@RequestMapping(value="writeREC_REP.do", method = {RequestMethod.GET, RequestMethod.POST})
 		@ResponseBody
 		public String getREC_REP(Recruit_ReplyVO rec_rep, HttpSession session){
 			rec_rep.setM_ID((String)session.getAttribute("id"));
 			System.out.println(rec_rep.toString());
-			recService.writeReply(rec_rep);
-			return null;
+			return recService.writeReply(rec_rep)+""; 
 		}
+		
+		@RequestMapping("updateREC_REP.do")
+		@ResponseBody
+		public String updateREC_REP(Recruit_ReplyVO rec_rep, HttpSession session){
+			rec_rep.setM_ID((String)session.getAttribute("id"));
+			int result=recService.updateReply(rec_rep);
+			System.out.println(result+"결과");
+			return result+"";
+		}
+		
+		@RequestMapping("deleteREC_REP.do")
+		@ResponseBody
+		public String deleteREC_REP(Recruit_ReplyVO rec_rep, HttpSession session){
+			rec_rep.setM_ID((String)session.getAttribute("id"));
+			int result=recService.deleteReply(rec_rep);
+			
+			return result+"";
+		}
+		
+		@RequestMapping("levelChkComm.do")
+		@ResponseBody
+		public String levelChkComm(Recruit_ReplyVO rec_rep){
+			return recService.getNodeCount(rec_rep)+""; 			
+		}
+		
+		
+		
 }

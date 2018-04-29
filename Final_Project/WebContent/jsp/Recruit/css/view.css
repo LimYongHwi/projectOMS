@@ -25,7 +25,12 @@ text-align:left;
    margin: 3px 0 0 30px;
    color:#b5b5b5;
 }
-
+.section #replydiv{
+	padding: 0 80px 0 40px;
+}
+.section #replydiv #reply tr:last-child {
+	height:80px;
+}
 dt{
 width:20%;
 text-align:center;

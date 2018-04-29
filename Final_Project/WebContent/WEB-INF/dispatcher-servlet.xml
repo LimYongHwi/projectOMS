@@ -35,6 +35,9 @@
 <mvc:mapping path="/plan_refrence.do"/>
 <mvc:mapping path="/REM.do"/>
 <mvc:mapping path="/infoRCM.do"/>
+<mvc:mapping path="/writeREC_REP.do"/>
+<mvc:mapping path="/updateREC_REP.do"/>
+<mvc:mapping path="/deleteREC_REP.do"/>
 <ref bean="loginInterceptor"/>
 </mvc:interceptor>
 </mvc:interceptors>

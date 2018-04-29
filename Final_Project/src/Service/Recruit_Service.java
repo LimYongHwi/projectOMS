@@ -71,5 +71,5 @@ public interface Recruit_Service {
 	public int deleteReply(Recruit_ReplyVO rec_rep);
 	public HashMap<String,Object> getReplyList(HashMap<String, Object> params,int page);
 	public int getLastReply(HashMap<String, Object> params);
-	
+	public int getNodeCount(Recruit_ReplyVO rec_rep);
 }

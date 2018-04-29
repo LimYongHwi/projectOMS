@@ -25,8 +25,8 @@ $(document).ready(function(){
 </head>
 <body>
 <jsp:include page="../Header_tab1.jsp"></jsp:include>
-	<div class="body">
-	<jsp:include page="Service_Center_Side.jsp"></jsp:include>
+<div class="body">
+<jsp:include page="../sidevar_3.jsp"/>
 
 	<div class="sc_board">
 	<center>

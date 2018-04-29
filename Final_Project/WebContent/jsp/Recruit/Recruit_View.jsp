@@ -72,10 +72,10 @@ function readlist(page){
 				$("#list").append("<tr><th>번호</th><th>이름</th><th>확정여부</th></tr>");
 				
 	          for(var i =0; i<refrenceList.length; i++){
-	        		  msg='확정취소';
+	        		  msg='확정';
 	        	  	  confirm="대기중";
 	        	  if(refrenceList[i].REC_APPLY_CONFIRM=='Y'){
-	        	  var msg='확정';
+	        	  var msg='확정취소';
 	        	  var confirm="확정";
 	        	  }
 	        	  $("#list").append("<tr>"

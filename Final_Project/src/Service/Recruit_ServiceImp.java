@@ -36,7 +36,6 @@ public class Recruit_ServiceImp implements Recruit_Service{
 				recruit.setREC_FILE(fileName);
 			} catch (IllegalStateException | IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 			recDao.insertRecruit(recruit);
 			return numcheck();

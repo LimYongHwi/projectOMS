@@ -1,4 +1,4 @@
-package Controller;
+package Intercepter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
 
 @Component
 public class AdminInterceptor extends HandlerInterceptorAdapter{
@@ -22,13 +21,13 @@ public class AdminInterceptor extends HandlerInterceptorAdapter{
 		char admin = (char) session.getAttribute("admin");
 		if(admin=='N')
 		{
-			response.sendRedirect("loginForm.do");
+			response.sendRedirect("error.do");
 			return false;
 		}
 		return true;
 		}
 		catch(NullPointerException e){
-			response.sendRedirect("loginForm.do");
+			response.sendRedirect("error.do");
 			return false;
 		}
 		

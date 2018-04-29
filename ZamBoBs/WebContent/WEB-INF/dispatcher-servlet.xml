@@ -9,37 +9,17 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 <context:component-scan base-package="Controller"/>
-<context:component-scan base-package="Interceptor"/>
+<context:component-scan base-package="Intercepter"/>
 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-<property name="prefix" value="jsp/"/>
+<property name="prefix" value="Jsp/"/>
 <property name="suffix" value=".jsp"/>
 </bean>
 
 
 <mvc:interceptors>
-
-
-<mvc:interceptor>
-<mvc:mapping path="/faq_writeForm.do"/>
-<mvc:mapping path="/event_writeForm.do"/>
-<ref bean="adminInterceptor"/>
-</mvc:interceptor>
-
-
 <mvc:interceptor>
 <mvc:mapping path="/recruit_writeForm.do"/>
-<mvc:mapping path="/service_writeForm.do"/>
-<mvc:mapping path="/review_WriteForm.do"/>
-<mvc:mapping path="/info_WriteForm.do"/>
-<mvc:mapping path="/plan_writeForm.do"/>
-<mvc:mapping path="/recruit_refrence.do"/>
-<mvc:mapping path="/plan_refrence.do"/>
-<mvc:mapping path="/REM.do"/>
-<mvc:mapping path="/infoRCM.do"/>
-<mvc:mapping path="/writeREC_REP.do"/>
-<mvc:mapping path="/updateREC_REP.do"/>
-<mvc:mapping path="/deleteREC_REP.do"/>
-<ref bean="loginInterceptor"/>
+<ref bean="adminInterceptor"/>
 </mvc:interceptor>
 </mvc:interceptors>
 

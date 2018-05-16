@@ -12,7 +12,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-$(".title").text("계획게시판");
+$(".title").text("공지게시판");
 })
 
 
@@ -25,21 +25,15 @@ $(".title").text("계획게시판");
 <jsp:include page="../sidevar_3.jsp"/>
 
 <div class="section"> 
-<p id="title">계획합니다</p>
-<p id="title_sub">여행 계획에 대한 자세한 내용을 설명해주세요!</p>
+<p id="title">공지합니다</p>
+<p id="title_sub">공지에 대한 자세한 내용을 수정해주세요!</p>
 <hr>
-<form action="plan_update.do" enctype="multipart/form-data" method="post">
+<form action="notice_update.do" enctype="multipart/form-data" method="post">
 <dl>
-<dt>글번호</dt><dd><input type="text" name="PLAN_NO" value="${plan.PLAN_NO}" readonly="readonly"></dd>
-<dt>제목</dt><dd><input type="text" name="PLAN_TITLE" value="${plan.PLAN_TITLE}"></dd>
-<dt>내용</dt><dd><input type="text" name="PLAN_CONTENT" value="${plan.PLAN_CONTENT}"></dd>
-<dt>첨부파일</dt><dd><input type="file" name="ufile"></dd>
-<dt>작성자</dt><dd><input type="text" name="M_ID" value="${plan.m_ID}" readonly="readonly"></dd>
-<dt>장소</dt><dd><input type="text" name="PLAN_DESTINATION" value="${plan.PLAN_DESTINATION}"></dd>
-<dt>인원수</dt><dd><input type="number" name="PLAN_MEMBER_COUNT" value="${plan.PLAN_MEMBER_COUNT}"></dd>
-<dt>원하는 성별</dt><dd><input type="radio" name="PLAN_GENDER" value="M" value="${plan.PLAN_GENDER }">남자만 <input type="radio" name="PLAN_GENDER" value="W" value="${plan.PLAN_GENDER }">여자만 <input type="radio" name="PLAN_GENDER" value="F"value="${plan.PLAN_GENDER }">무관</dd>
-<dt>시작일</dt><dd><input type="date" name="PLAN_START" value="${plan.PLAN_START}"></dd>
-<dt>종료일</dt><dd><input type="date" name="PLAN_END" value="${plan.PLAN_END}"></dd>
+<dt>글번호</dt><dd><input type="text" name="NOTICE_NO" value="${notice.NOTICE_NO}" readonly="readonly"></dd>
+<dt>제목</dt><dd><input type="text" name="NOTICE_TITLE" value="${notice.NOTICE_TITLE}"></dd>
+<dt>내용</dt><dd><input type="text" name="NOTICE_CONTENT" value="${notice.NOTICE_CONTENT}"></dd>
+<dt>첨부파일</dt><dd><input type="file" name="ufile" value="${notice.NOTICE_FILE}"></dd>
 </dl>
 <input type="button" class="button" value="뒤로가기" onclick="javascript:history.back()" style="margin-left:50px">
 <input type="submit" value="작성하기">

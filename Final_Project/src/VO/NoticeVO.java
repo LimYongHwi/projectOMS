@@ -1,13 +1,15 @@
 package VO;
 
+import java.util.Date;
+
 public class NoticeVO {
 	private int NOTICE_NO;
 	private String NOTICE_TITLE;
 	private String NOTICE_CONTENT;
 	private String NOTICE_FILE;
-	private String NOTICE_CREATE_DATE;
-	private String NOTICE_UPDATE_DATE;
-	private String NOTICE_DELETE_DATE;
+	private Date NOTICE_CREATE_DATE;
+	private Date NOTICE_UPDATE_DATE;
+	private Date NOTICE_DELETE_DATE;
 	
 	
 	
@@ -20,8 +22,9 @@ public class NoticeVO {
 	public NoticeVO() {
 		super();
 	}
+	
 	public NoticeVO(int nOTICE_NO, String nOTICE_TITLE, String nOTICE_CONTENT, String nOTICE_FILE,
-			String nOTICE_CREATE_DATE, String nOTICE_UPDATE_DATE, String nOTICE_DELETE_DATE) {
+			Date nOTICE_CREATE_DATE, Date nOTICE_UPDATE_DATE, Date nOTICE_DELETE_DATE) {
 		super();
 		NOTICE_NO = nOTICE_NO;
 		NOTICE_TITLE = nOTICE_TITLE;
@@ -55,22 +58,23 @@ public class NoticeVO {
 	public void setNOTICE_FILE(String nOTICE_FILE) {
 		NOTICE_FILE = nOTICE_FILE;
 	}
-	public String getNOTICE_CREATE_DATE() {
+	
+	public Date getNOTICE_CREATE_DATE() {
 		return NOTICE_CREATE_DATE;
 	}
-	public void setNOTICE_CREATE_DATE(String nOTICE_CREATE_DATE) {
+	public void setNOTICE_CREATE_DATE(Date nOTICE_CREATE_DATE) {
 		NOTICE_CREATE_DATE = nOTICE_CREATE_DATE;
 	}
-	public String getNOTICE_UPDATE_DATE() {
+	public Date getNOTICE_UPDATE_DATE() {
 		return NOTICE_UPDATE_DATE;
 	}
-	public void setNOTICE_UPDATE_DATE(String nOTICE_UPDATE_DATE) {
+	public void setNOTICE_UPDATE_DATE(Date nOTICE_UPDATE_DATE) {
 		NOTICE_UPDATE_DATE = nOTICE_UPDATE_DATE;
 	}
-	public String getNOTICE_DELETE_DATE() {
+	public Date getNOTICE_DELETE_DATE() {
 		return NOTICE_DELETE_DATE;
 	}
-	public void setNOTICE_DELETE_DATE(String nOTICE_DELETE_DATE) {
+	public void setNOTICE_DELETE_DATE(Date nOTICE_DELETE_DATE) {
 		NOTICE_DELETE_DATE = nOTICE_DELETE_DATE;
 	}
 	@Override
@@ -79,6 +83,7 @@ public class NoticeVO {
 				+ NOTICE_CONTENT + ", NOTICE_FILE=" + NOTICE_FILE + ", NOTICE_CREATE_DATE=" + NOTICE_CREATE_DATE
 				+ ", NOTICE_UPDATE_DATE=" + NOTICE_UPDATE_DATE + ", NOTICE_DELETE_DATE=" + NOTICE_DELETE_DATE + "]";
 	}
+
 	
 	
 }

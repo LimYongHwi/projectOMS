@@ -90,7 +90,7 @@ public class MemberController {
 	
 	//중복체크
 	@RequestMapping(value="duplChk.do", method=RequestMethod.GET)
-	 @ResponseBody 
+	@ResponseBody 
 	public void dupl(String m_id,HttpServletResponse resp){
 		String msg="";
 		String flag="";

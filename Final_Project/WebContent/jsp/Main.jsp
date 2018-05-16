@@ -67,26 +67,29 @@
 				var datas= JSON.parse(data);
 				var review = datas.result[0].bestReview;
 				var prereview = datas.result[0].PreBestReview;
+				console.log("prereview"+prereview);
 				var rev_no=review.REV_NO;
+			
 				
 				$('.bestreview').attr('onclick',"location.href='review_view.do?num="+rev_no+"'");
 				$('.bestreviewimg').attr('src','reviewdownload.do?REV_NO='+rev_no);
-				$('#BRV_CREATER').text('by'+review.m_ID);
+				$('#BRV_CREATER').text('by '+review.m_ID);
 				$('#BRV_TITLE').text(review.REV_TITLE);
 				var plus= '...';
 				if(review.REV_CONTENT.length<20)
 					plus='';
 				$('#BRV_CONTENT').text(review.REV_CONTENT.substring(0,20)+plus);
-				
-				$('.prebestreview').attr('onclick',"location.href='review_view.do?num="+prereview.REV_NO+"'");
-				$('.prebestreviewimg').attr('src','reviewdownload.do?REV_NO='+prereview.REV_NO);
-				$('#PREBRV_CREATER').text('by'+prereview.m_ID);
+				if(prereview!=null){
+				var prereviewNo = prereview.REV_NO;
+				$('.prebestreview').attr('onclick',"location.href='review_view.do?num="+prereviewNo+"\'");
+				$('.prebestreviewimg').attr('src','reviewdownload.do?REV_NO='+prereviewNo);
+				$('#PREBRV_CREATER').text('by '+prereview.m_ID);
 				$('#PREBRV_TITLE').text(prereview.REV_TITLE);
 				var plus= '...';
 				if(prereview.REV_CONTENT.length<20)
 					plus='';
 				$('#PREBRV_CONTENT').text(prereview.REV_CONTENT.substring(0,20)+plus);
-				
+				}
 			}
 		});
 	   
@@ -105,26 +108,28 @@
 <div class="saction1">
 <div class="bestreview">
 <img src="image/bestreview.jpg" width="300px" height="250px" class="bestreviewimg">
-<p id="BRV_CREATER">by작성자<br>
-환상적인 이탈리아 여행이였어요!</p>
+<p id="BRV_CREATER">...<br>
+이번달의 베스트 리뷰</p>
 <p id="BRV_TITLE"></p>
 <p id="BRV_CONTENT">
-9박 10일간의 유럽여행,,, 이탈리아는 정말 정렬적....
+리뷰를 찾을 수 없어요 ㅠㅠ
 </p>
 </div>
 <div class="eventSlider">
+<c:if test="${event.eventList==null}">
+<div><img src="" alt="현재진행중인 이벤트가 없습니다." id="eventSlide_1"></div>
+</c:if>
 <c:forEach items="${event.eventList}" var='e'>
 <div onclick="location.href='event_view.do?EVT_NO=${e.EVT_NO}'"><img src="eventdownload.do?num=${e.EVT_NO}" id="eventSlide_${e.RN}"></div>
 </c:forEach>
 </div>
-
 <div class="prebestreview">
 <img src="image/bestreview.jpg" width="300px" height="250px" class="prebestreviewimg">
-<p  id="PREBRV_CREATER">by작성자<br>
-환상적인 이탈리아 여행이였어요!</p>
+<p  id="PREBRV_CREATER">...<br>
+저번달의 베스트 </p>
 <p id="PREBRV_TITLE"></p>
 <p id="PREBRV_CONTENT">
-9박 10일간의 유럽여행,,, 이탈리아는 정말 정렬적....
+리뷰는 없네요 ㅠㅠ
 </p>
 </div>
 </div>
@@ -139,18 +144,16 @@
     </ul>
     <div class="tab_container">
         <div id="tab1" class="tab_content">
-            <ul>
-                <li><a href="#"><span>오마이소울메이트 고객님들께 말씀전해드립니다.</span><span id="date">2018-02-21</span></a>
+        		<ul>
+           		<c:forEach begin="0" end="4" items="${notice}" var="n">
+                <li>
+                <a href="notice_view.do?NOTICE_NO=${n.NOTICE_NO}">
+                <span>${n.NOTICE_TITLE}</span>
+                <span id="date"><fmt:formatDate value="${n.NOTICE_CREATE_DATE}" pattern="yyyy-MM-dd"/></span>
+                </a>
                 </li>
-                <li><a href="#"><span>오마이소울메이트 고객님들께 말씀전해드립니다.</span><span id="date">2018-02-21</span></a>
-                </li>
-                <li><a href="#"><span>오마이소울메이트 고객님들께 말씀전해드립니다.</span><span id="date">2018-02-21</span></a>
-                </li>
-                <li><a href="#"><span>오마이소울메이트 고객님들께 말씀전해드립니다.</span><span id="date">2018-02-21</span></a>
-                </li>
-                <li><a href="#"><span>오마이소울메이트 고객님들께 말씀전해드립니다.</span><span id="date">2018-02-21</span></a>
-                </li>
-            </ul>
+                </c:forEach>
+                </ul>
         </div>
         <!-- #tab1 -->
         <div id="tab2" class="tab_content">

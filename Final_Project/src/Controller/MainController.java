@@ -16,6 +16,7 @@ import org.springframework.web.servlet.View;
 import Service.Event_Service;
 import Service.Information_Service;
 import Service.Member_Service;
+import Service.Notice_Service;
 import Service.Plan_Service;
 import Service.Recruit_Service;
 import Service.Review_Service;
@@ -44,6 +45,8 @@ public class MainController {
 		Event_Service eService;
 		@Autowired
 		Service_Center_Service SCservice;
+		@Autowired
+		Notice_Service nService;
 		
 		
 	
@@ -68,7 +71,7 @@ public class MainController {
 		mav.addObject("recruit",recService.getRecruitList(1, result));
 		mav.addObject("plan",pService.getPlanList(1, result));
 		mav.addObject("event",eService.getEventList(result, -1));
-		
+		mav.addObject("notice",nService.getNoticeList(result, 1));
 		mav.setViewName("Main");
 		return mav;
 	}

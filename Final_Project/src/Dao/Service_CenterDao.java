@@ -35,10 +35,11 @@ public interface Service_CenterDao {
 	
 	
 	
+	public ArrayList<HashMap<String, Object>> getNoticeList(HashMap<String, Object> params);
+	public int getNoticeCount(HashMap<String, Object> params);
+	public NoticeVO getOneNotice(NoticeVO notice);
 	public int insertNotice(NoticeVO notice);
 	public int updateNotice(NoticeVO notice);
 	public int deleteNotice(NoticeVO notice);
-	public ArrayList<NoticeVO> getNoticeList(HashMap<String, Object> params);
-	public int getNoticeCount(HashMap<String, Object> params);
 	public int getNoticeSEQ();
 }

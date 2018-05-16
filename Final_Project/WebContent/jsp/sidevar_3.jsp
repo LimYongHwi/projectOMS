@@ -52,10 +52,11 @@ text-decoration: none;
 <p class="title" style="font-size: 30px; color:white">고객센터</p>
 </div>
 <ul>
+<li class="sub_notice"><a href="notice_main.do">공지사항</a></li>
 <li class="sub_review">
 <a href='service_center_main.do'> 1:1 문의하기 </a>
 </li>
-<li class="sub_info"><a href='event_main.do'>이벤트</a></li>
+<li class="sub_event"><a href='event_main.do'>이벤트</a></li>
 </ul>
 </div>
 </body>

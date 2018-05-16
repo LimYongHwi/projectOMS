@@ -34,7 +34,7 @@ public class Notice_ServiceImp implements Notice_Service{
 	@Override
 	public int noticeWrite(NoticeVO notice, MultipartFile ufile) {
 		// TODO Auto-generated method stub
-		String path = "C:/koitt/down";
+		String path = "C:/koitt/down/";
 		File dir = new File(path);
 		if(!dir.exists())
 			dir.mkdirs();
@@ -56,7 +56,7 @@ public class Notice_ServiceImp implements Notice_Service{
 	@Override
 	public int updateNotice(NoticeVO notice, MultipartFile ufile) {
 		// TODO Auto-generated method stub
-		String path = "C:/koitt/down";
+		String path = "C:/koitt/down/";
 		File dir = new File(path);
 		if(!dir.exists())
 			dir.mkdirs();

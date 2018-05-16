@@ -66,27 +66,37 @@ margin-right:25%;
 
 .topmenu{
 text-align:center;
-    border: 1px solid #9fdede45;
+    border: 1px solid #fafafd;
 	margin:0 auto;
-	height:60px;
-	background: #f1f1f1;
-	color:#bbbbbb82;
+	height:55px;
+	background-color: #6fe0eb;
+	color:#f5f6f9;
 }
-.topmenu li{
+.topmenu_inner li{
 	display: -webkit-inline-box;
     list-style-type: none;
-    margin: 15px 50px 0px 50px;
+    margin: 0px 50px;
     padding: 0;
     text-align:center;
     
-}.topmenu ul{
- 	font-size: 35px;
+}.topmenu_inner ul{
+ 	font-size: 22px;
     width: 100%;
     margin: 0 auto;
     padding: 0;
 }
-.topmenu #icon{
-    margin: 5 30 5 30;
+.topmenu_inner #icon{
     font-size: 10px;
     width: 0%;
+}
+
+.topmenu_inner #icon img{
+	margin:0px 5px 10px 5px;
+	vertical-align: middle;
+}
+
+.topmenu_inner{
+	position:relative;
+	width:100%;
+	line-height: 60px;
 }

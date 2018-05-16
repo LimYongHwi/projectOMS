@@ -71,7 +71,7 @@ public class MemberVO {
 
 	public MemberVO(String id) {
 		// TODO Auto-generated constructor stub
-		this.M_ID=id;
+		M_ID=id;
 	}
 
 

@@ -46,7 +46,7 @@ public class Event_ServiceImpl implements Event_Service{
 	@Override
 	public int writeEvent(EventVO eventVO, MultipartFile ufile) {
 		// TODO Auto-generated method stub
-		String path = "C:/koitt/down";
+		String path = "C:/koitt/down/";
 		File dir = new File(path);
 		if(!dir.exists())
 			dir.mkdirs();
@@ -68,7 +68,7 @@ public class Event_ServiceImpl implements Event_Service{
 	public File getAttachFile(EventVO event) {
 		EventVO e = eDao.selectOneEvent(event);
 		String fileName = e.getEVT_FILE();
-		String path="C:/koitt/down";
+		String path="C:/koitt/down/";
 		return new File(path+fileName);
 	}
 	

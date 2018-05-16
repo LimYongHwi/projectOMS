@@ -23,7 +23,7 @@ public class Review_ServiceImpl implements Review_Service{
 	
 	@Override
 	public int writeReview(ReviewVO review,MultipartFile file) {
-		String path = "C:/koitt/down";
+		String path = "C:/koitt/down/";
 		File dir = new File(path);
 		if(!dir.exists())
 			dir.mkdirs();
@@ -52,7 +52,7 @@ public class Review_ServiceImpl implements Review_Service{
 
 	@Override
 	public int updateReview(ReviewVO review,MultipartFile ufile) {
-		String path = "C:/koitt/down";
+		String path = "C:/koitt/down/";
 		File dir = new File(path);
 		if(!dir.exists())
 			dir.mkdirs();

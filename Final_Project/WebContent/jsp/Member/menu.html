@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+  src="http://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>  
+<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">  
+<script type="text/javascript" src="jquery-ui.min.js"></script> 
+<style type="text/css">
+
+.MyMenuBox a:link{
+	color:#B2DFF0;
+	text-decoration: none;
+}
+
+.MyMenuBox a:visited{
+	color:#434A52;
+	text-decoration: none;
+}
+
+.MyMenuBox li{
+	color:#e4def9;
+}
+
+
+#Myheader{
+	background-image: url('');
+	background-repeat:no-repeat;
+	background-size:cover;
+	height:370px;
+	text-align: center;
+}
+
+.MyMenuBox{
+	position: absolute;
+	width: 250px;
+	height: 295px;
+	left: 50px;
+	top: 430px;
+	background-color: #f5f6fc;
+	color: #fff;
+	font-size:20px;
+	text-align: center;
+	box-shadow: 2px 2px 6px #ded8df;
+	border-radius: 2px;
+	font-weight: bold;
+	
+}
+
+.MyMenuBox ul{
+	padding:0;
+}
+
+.MyMenuBox ul li{
+	list-style-type: none;
+	margin: 14px 0px;
+	padding: 0;
+}
+
+
+#menuTitle{
+	font-size:22px;
+	margin:0;
+	padding:12px 0px;
+	position:relative;
+	background-color: #97D8FA;
+	box-shadow: 2px 2px 2px #ded8df;
+	border-radius: 2px;
+	
+}
+
+</style>
+
+<script>
+	$(document).ready(function(){
+	
+		var menuPos = parseInt($('#MyMenuBox').css('top'));
+		
+		$(window).scroll(function(){
+			
+			var scrollTop = $(window).scrollTop();
+			var newPos = scrollTop + menuPos + "px";
+			
+			$('#MyMenuBox').stop().animate({
+				'top':newPos
+			},{
+				'duration' :500,
+				'easing': 'easeInOutBack',
+				'complete': function(){
+					console.log('이동완료');
+				}
+			});
+			
+		}).scroll();
+		
+	});
+</script>
+</head>
+<body>
+<div id="MyPwrqpper">
+<div id="Myheader">
+		<div id="Mytitle">
+		<h1>Oh My Soulmate</h1>
+		<h1 class="p2"></h1>
+		</div>
+	</div>
+	
+	<div id="MyContainer">
+		<div class="MyMenuBox" id="MyMenuBox">
+		<div id="menuTitle">
+			<span>마이 페이지</span>	
+		</div>
+		<div id="menuList">
+		<ul>
+			<li id="menu1">정보수정</li>
+			<li id="menu2">내 사진첩</li>
+			<li><a href="#" id="menu4">내 활동</a></li>
+			<li><a href="#" id="menu5">내가 문의한 글</a></li>
+			<li><a href="#" id="menu5">회원 탈퇴</a></li>
+		</ul>
+		</div>
+		</div> <!-- menuSection끝 -->
+		<div id="contentSection">
+		
+		</div>
+	</div> <!-- MyContainer끝 -->
+</div> <!-- MyPwrapper끝 -->
+
+<div>
+아
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+
+<br>
+v
+<br>
+
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+
+<br>
+<br>
+
+<br>
+<br>
+<br>
+
+<br>
+<br>
+
+<br>
+<br>
+
+<br>
+
+<br>
+<br>
+
+<br>
+<br>
+
+<br>
+<br>
+
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+
+<br>
+<br>
+</div>
+</body>
+</html>

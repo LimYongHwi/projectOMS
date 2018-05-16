@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'LotteMartDream';
+  font-style: normal;
+  font-weight: 700;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff') format('woff');
+}
+body{
+ font-family: 'LotteMartDream';
+	margin:0;
+	padding:0;
+}
+
+ #MyPwrqpper{ 
+ 	width:100%; 
+ 	margin:0; 
+ } 
+
+
+#Mytitle{
+	background-color: #000000; 
+	background: rgba(255, 255, 255, 0.5);
+    height: 75%;
+    vertical-align: middle;
+    top:12%;
+    position: relative;
+	 text-align: center;
+}
+.p2 {
+display: block;
+width: 100%;
+margin: 0 auto;
+word-break: break-all;
+padding-top: 4%;
+}
+
+h1 {
+	display: none;
+	margin:auto;
+    font-size: 90px;
+    color:#424242;
+    opacity:0.8;
+    font-family: 'Gloria Hallelujah', cursive;
+    
+}
+
+#MyContainer{
+	position:absolute;
+	width: 100%;
+	height:1100px;
+	
+}
+
+
+
+
+#contentSection {
+	width:82%;
+	height:100%;
+	margin:0;
+	padding:20px;
+	float:right;
+}
+
+
+
+#MenuSection{
+	width:10%;
+	height: 100%;
+	margin:0;
+	padding:0;
+	display: inline-block;
+	float: left;
+}
+
+
+
+
+.MyMenuBox a:link{
+	color:#3f5374;
+	text-decoration: none;
+}
+
+.MyMenuBox a:visited{
+	color:#434A52;
+	text-decoration: none;
+}
+
+.MyMenuBox li{
+	color:#3f5374;
+}
+
+
+#Myheader{
+	background-image: url('');
+	background-repeat:no-repeat;
+	background-size:cover;
+	height:370px;
+	text-align: center;
+}
+
+.MyMenuBox{
+	position: absolute;
+	width: 250px;
+	height: 295px;
+	left: 60px;
+	top: 70px;
+	background-color: #fafbfd;
+	color: #fff;
+	font-size:20px;
+	text-align: center;
+	box-shadow: 2px 2px 6px #ded8df;
+/* 	border-radius: 2px; */
+	font-weight: bold;
+}
+
+.MyMenuBox ul{
+	padding:0;
+	
+}
+
+.MyMenuBox ul li{
+	list-style-type: none;
+	margin: 25px 0px;
+	padding: 0;
+}
+
+
+#menuTitle{
+	font-size:22px;
+	margin:0;
+	padding:15px 0px;
+	position:relative;
+	background-color:#63cdd7;
+	box-shadow: 2px 2px 2px #ded8df;
+	 font-family: 'LotteMartDream';
+}
+

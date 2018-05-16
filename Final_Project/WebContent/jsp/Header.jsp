@@ -44,7 +44,7 @@
    	  console.log(id=="null");
    	  if(id=="null"){
    		  url="loginform.do"
-   	    	  window.open(url,"ChildLoginWin","width=500 height=400");
+   	    	  window.open(url,"ChildLoginWin","width=500 height=400 top=200px left=500px");
    	  }else{
    		  $('#login').html("로그인");
        	  $('#join').html("회원가입");
@@ -53,8 +53,17 @@
      });
     
      $('#join').click(function(){
-   	 location.href="joinform.do"; 
-     });
+       	console.log(id);
+      	 if(id=="null"){
+      		 location.href="joinform.do";
+      	 }else{
+
+      		 if(admin=='Y'){
+      	        location.href="adminForm.do";
+      		 }else
+      			location.href="my.do";
+      	 }
+       });
      
    });
 
@@ -84,13 +93,15 @@
 </div>
 </div>
 <div class="topmenu">
+<div class="topmenu_inner">
 <ul>
 <li onclick="location.href='recruit_main.do'">모집/계획</li>|
 <li onclick="location.href='review_Main.do'">여행정보/후기</li>|
 <li onclick="location.href='service_center_main.do'">고객센터</li>|
-<li id="icon"><i class="fas fa-search fa-3x"></i></li>
-<li id="icon"><i class="fas fa-align-justify fa-3x"></i></li>
+<li id="icon"><img src="image/loupe.png"></li>
+<li id="icon"><img src="image/menu.png"></li>
 </ul>
+</div>
 </div>
 </body>
 </html>

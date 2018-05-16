@@ -121,7 +121,7 @@ public class Member_ServiceImpl implements Member_Service{
 
 	@Override
 	public  MemberVO selectOneMember(MemberVO member) {
-		// TODO Auto-generated method stub
+		System.out.println("여기는 서비스  셀렉트 원멤버" + "  " + member.getM_ID());
 		return mDao.selectOneMember(member);
 	}
 
@@ -135,7 +135,6 @@ public class Member_ServiceImpl implements Member_Service{
 
 	@Override
 	public ArrayList<MemberVO> selectSearchMember(MemberVO member) {
-		System.out.println(member+"여기는 서비스");
 		return mDao.selectSearchPhoneMember(member);
 	}
 	

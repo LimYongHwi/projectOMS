@@ -98,13 +98,14 @@ input {
   background-color: #434A52;
 }
 .form--login input[type="submit"] {
-  background-color: #ea4c88;
-  color: #eee;
+  background-color:#6fe0eb;
+  color: #f5f6f9;
   font-weight: bold;
   text-transform: uppercase;
 }
 .form--login input[type="submit"]:focus, .form--login input[type="submit"]:hover {
-  background-color: #d44179;
+  background-color:#63cdd7;
+  color:#f5f6f9;
 }
 .form__field {
   display: -webkit-box;
@@ -180,7 +181,6 @@ input {
 	$('lgnFrm').submit(function(){
 		var id= "<%= session.getAttribute("id")%>";
 		console.log(id);
-		alert(id);
 			if($('#loginFlag').val()==""){
 				alert('아이디와 비번을 모두 입력하세요.');
 				return false;

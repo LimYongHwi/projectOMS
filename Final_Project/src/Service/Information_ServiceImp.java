@@ -26,7 +26,7 @@ public class Information_ServiceImp implements Information_Service{
 	@Override
 	public int writeInformation(InformationVO information, MultipartFile ufile) {
 		// TODO Auto-generated method stub
-		String path = "C:/koitt/down";
+		String path = "C:/koitt/down/";
 		File dir = new File(path);
 		if(!dir.exists())
 			dir.mkdirs();

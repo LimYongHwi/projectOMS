@@ -16,26 +16,23 @@ display: -webkit-inline-box;
 
 }
 .saction1 p{
-margin-left:50px;
+margin-left:15px;
 text-align:left;
 }
 .bestreview{
-width:30%;
-margin-left: 2.5%;
+width:35%;
 }
 .saction1 .eventSlider img{
 width:300px;
 height:500px;
 }
 .saction1 .eventSlider-wrapper{
-width:100%;
-margin-left: 2.5%;
+width:30%;
 }
 .saction1 .bx-wrapper{
-	width:30%;
+	width:300px;
 	height:500px;
     margin: 0px;
-	margin-left: 2.5%;
     -moz-box-shadow: 0 0 5px #ccc;
     -webkit-box-shadow:none;
     box-shadow:none;
@@ -46,9 +43,8 @@ margin-left: 2.5%;
 	margin: 0;
 }
 }
-.prebestreview{
-width:30%;
-margin-left: 2.5%;
+.bestreview1{
+width:35%;
 }
 
 .saction2{

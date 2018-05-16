@@ -205,7 +205,14 @@ public class MemberController {
 			mav.addObject("msg", "비밀번호가 일치하지 않습니다.");
 			mav.addObject("flag", "3");
 			break;
-		}}
+		}
+		case 4:{
+			mav.addObject("flag","1");
+			session.setAttribute("id", m_id);
+			session.setAttribute("admin", 'Y');
+			break;
+		}
+		}
 		mav.setViewName("Member/LoginForm");			
 		return mav;
 	}

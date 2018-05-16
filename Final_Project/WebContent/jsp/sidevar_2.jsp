@@ -11,11 +11,11 @@
 text-align:center;
 width:20%;
 margin : 0;
-    background: #dcdcdc57;
+    background: #f1f1f1;
     height: 800px;
 }
 .sidevar .title_tb{
-    background: #53a9dc7a;
+    background: #97d8ff;
     width: 100%;
     text-align: center;
     padding-top: 40px;

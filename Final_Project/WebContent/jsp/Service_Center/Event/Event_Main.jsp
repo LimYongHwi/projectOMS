@@ -42,7 +42,7 @@ $(document).ready(function(){
 		<tr>
 				<td>${eList.RN}</td>
 			<td><a href="event_view.do?EVT_NO=${eList.EVT_NO}">${eList.EVT_TITLE}</a></td>
-				<td>${eList.EVT_CREATE_DATE}</td>
+				<td><fmt:formatDate value="${eList.EVT_CREATE_DATE}" pattern="yyyy-MM-dd"/></td>
 		</tr>		
 		</c:forEach>
 	</table>

@@ -13,7 +13,7 @@
 	#{EVT_CONTENT,jdbcType=VARCHAR},
 	#{EVT_FILE,jdbcType=VARCHAR},
 	<choose>
-	<when test="EVT_END==null">
+	<when test="EVT_END==null||EVT_END==''">
 	'Y',
 	</when>
 	<otherwise>

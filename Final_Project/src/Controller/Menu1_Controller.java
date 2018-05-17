@@ -69,10 +69,10 @@ public class Menu1_Controller {
 		
 		
 		if(type==1||type==3){
-			params.put("REC_TITLE", keyword);			
+			params.put("TITLE", keyword);			
 		}
 		if(type==2||type==3){
-			params.put("REC_CONTENT", keyword);
+			params.put("CONTENT", keyword);
 		}if(type==4){
 			params.put("M_ID", keyword);
 		}
@@ -270,10 +270,10 @@ public class Menu1_Controller {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("keyword", keyword);
 		if(type==1||type==3){
-			params.put("PLAN_TITLE", keyword);			
+			params.put("TITLE", keyword);			
 		}
 		if(type==2||type==3){
-			params.put("PLAN_CONTENT", keyword);
+			params.put("CONTENT", keyword);
 		}if(type==4){
 			params.put("M_ID", keyword);
 		}

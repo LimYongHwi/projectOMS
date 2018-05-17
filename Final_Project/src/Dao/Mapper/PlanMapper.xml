@@ -62,18 +62,18 @@ SELECT * FROM PLAN WHERE PLAN_NO=#{PLAN_NO}
 <!-- 	public ArrayList<PlanVO> getListPlan(HashMap<String, Object> params); -->
 <select id="getListPlan" parameterType="java.util.HashMap" resultType="PlanVO">
 	SELECT * FROM ( SELECT ROWNUM AS RN, A.* FROM(
-	SELECT * FROM Plan WHERE 1 = 0
-		<if test="PLAN_TITLE != null">
-		    OR PLAN_TITLE LIKE '%${PLAN_TITLE}%'
+	SELECT * FROM Plan WHERE 1 = 1
+		<if test="TITLE != null">
+		    AND PLAN_TITLE LIKE '%${TITLE}%'
 		</if>
-		<if test="PLAN_CONTENT != null">
-		    OR PLAN_CONTENT LIKE '%${PLAN_CONTENT}%'
+		<if test="CONTENT != null">
+		    AND PLAN_CONTENT LIKE '%${CONTENT}%'
 		</if>
 		<if test="M_ID != null">
-        	OR M_ID LIKE '%${M_ID}%'
+        	AND M_ID LIKE '%${M_ID}%'
 		</if>
 		<if test="type == 0">
-				    or 1=1	   
+				    OR 1=1	   
 		</if>
 		<if test="PLAN_DESTINATION != null">
 			AND PLAN_DESTINATION LIKE '%${PLAN_DESTINATION}%'
@@ -88,7 +88,7 @@ SELECT * FROM PLAN WHERE PLAN_NO=#{PLAN_NO}
 			AND PLAN_NO = #{PLAN_NO}
 		</if>
 		<if test="startdate != null">
-		   and PLAN_CREATE_DATE 
+		   AND PLAN_CREATE_DATE 
       	  between #{startdate} and #{enddate}
 		</if>
 		AND PLAN_DELETE_DATE IS NULL
@@ -100,18 +100,18 @@ SELECT * FROM PLAN WHERE PLAN_NO=#{PLAN_NO}
 <!-- public int getListCount(HashMap<String, Object> params); -->
 <select id="getListCount" parameterType="java.util.HashMap" resultType="int">
 	SELECT count(*) FROM ( SELECT ROWNUM AS RN, A.* FROM(
-	SELECT * FROM Plan WHERE 1 = 0
-		<if test="PLAN_TITLE != null">
-		    OR PLAN_TITLE LIKE '%${PLAN_TITLE}%'
+	SELECT * FROM Plan WHERE 1 = 1
+		<if test="TITLE != null">
+		    AND PLAN_TITLE LIKE '%${TITLE}%'
 		</if>
-		<if test="PLAN_CONTENT != null">
-		    OR PLAN_CONTENT LIKE '%${PLAN_CONTENT}%'
+		<if test="CONTENT != null">
+		    AND PLAN_CONTENT LIKE '%${CONTENT}%'
 		</if>
 		<if test="M_ID != null">
-        	OR M_ID LIKE '%${M_ID}%'
+        	AND M_ID LIKE '%${M_ID}%'
 		</if>
 		<if test="type == 0">
-				    or 1=1	   
+				    OR 1=1	   
 		</if>
 		<if test="PLAN_DESTINATION != null">
 			AND PLAN_DESTINATION LIKE '%${PLAN_DESTINATION}%'

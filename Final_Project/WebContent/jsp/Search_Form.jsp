@@ -76,10 +76,13 @@ function valuecheck(){
 <div class="searchForm">
 <form action="search.do" method="post">
 <dl>
-<dt>제목</dt>
-<dd><input type="text" name="TITLE"></dd>
-<dt>내용</dt>
-<dd><input type="text" name="CONTENT"></dd>
+<dt><select name="type">
+<option value="1">제목</option>
+<option value="2">내용</option>
+<option value="3">제목+내용</option>
+</select></dt>
+<dd>
+<input type="text" name="keyword"></dd>
 <dt>작성자</dt>
 <dd><input type="text" name="M_ID"></dd>
 <dt>선택</dt>
@@ -97,7 +100,7 @@ function valuecheck(){
 </form>
 </div>
 <hr>
-<div class="sliding"><b>^</b></div>
+<div class="sliding"><img src="image/slidebutton.png" alt="^" style="margin-top: 5px;"></div>
 
 <div class="result">
 

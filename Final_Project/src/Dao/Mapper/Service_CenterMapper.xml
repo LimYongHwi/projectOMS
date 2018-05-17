@@ -46,15 +46,15 @@
 	<select id="getService_CenterList" parameterType="java.util.HashMap"
 		resultType="Service_CenterVO">
 		SELECT B.*, ROWNUM AS RN2 FROM ( SELECT ROWNUM AS RN, A.* FROM(
-		SELECT * FROM MEMBER_SERVICE WHERE 1 = 0
-		<if test="M_SVC_TITLE != null">
-			OR M_SVC_TITLE LIKE '%${M_SVC_TITLE}%'
+		SELECT * FROM MEMBER_SERVICE WHERE 1 = 1
+		<if test="TITLE != null">
+			AND M_SVC_TITLE LIKE '%${TITLE}%'
 		</if>
-		<if test="M_SVC_CONTENT != null">
-			OR M_SVC_CONTENT LIKE '%${M_SVC_CONTENT}%'
+		<if test="CONTENT != null">
+			AND M_SVC_CONTENT LIKE '%${CONTENT}%'
 		</if>
 		<if test="type == 0">
-			or 1=1
+			OR 1=1
 		</if>
 		<if test="M_ID != null">
 			AND M_ID LIKE '%#{M_ID}%'
@@ -68,15 +68,15 @@
 
 	<select id="getCountService" resultType="int" parameterType="java.util.HashMap">
 		SELECT COUNT(*) FROM ( SELECT ROWNUM AS RN, A.* FROM(
-		SELECT * FROM MEMBER_SERVICE WHERE 1 = 0
-		<if test="M_SVC_TITLE != null">
-			OR M_SVC_TITLE LIKE '%${M_SVC_TITLE}%'
+		SELECT * FROM MEMBER_SERVICE WHERE 1 = 1
+		<if test="TITLE != null">
+			AND M_SVC_TITLE LIKE '%${TITLE}%'
 		</if>
 		<if test="M_SVC_CONTENT != null">
-			OR M_SVC_CONTENT LIKE '%${M_SVC_CONTENT}%'
+			AND M_SVC_CONTENT LIKE '%${M_SVC_CONTENT}%'
 		</if>
 		<if test="type == 0">
-			or 1=1
+			OR 1=1
 		</if>
 		<if test="M_ID != null">
 			AND M_ID LIKE '%#{M_ID}%'
@@ -125,18 +125,18 @@
 	<select id="getFAQList" parameterType="java.util.HashMap"
 		resultType="FAQVO">
 		SELECT * FROM ( SELECT ROWNUM AS RN, A.* FROM(
-		SELECT * FROM FAQ WHERE 1 = 0
-		<if test="FAQ_TITLE != null">
-			OR FAQ_TITLE LIKE '%${FAQ_TITLE}%'
+		SELECT * FROM FAQ WHERE 1 = 1
+		<if test="TITLE != null">
+			AND FAQ_TITLE LIKE '%${TITLE}%'
 		</if>
-		<if test="FAQ_CONTENT != null">
-			OR FAQ_CONTENT LIKE '%${FAQ_CONTENT}%'
+		<if test="CONTENT != null">
+			AND FAQ_CONTENT LIKE '%${CONTENT}%'
 		</if>
 		<if test="FAQ_TAB == 0">
-			or 1=1
+			OR 1=1
 		</if>
 		<if test="FAQ_TAB != 0">
-			or FAQ_TAB = ${FAQ_TAB}
+			AND FAQ_TAB = ${FAQ_TAB}
 		</if>
 		AND FAQ_DELETE_DATE IS NULL
 		order by FAQ_NO DESC)
@@ -147,15 +147,15 @@
 
 	<select id="getCountFAQ" resultType="int" parameterType="java.util.HashMap">
 		SELECT COUNT(*) FROM ( SELECT ROWNUM AS RN, A.* FROM(
-		SELECT * FROM FAQ WHERE 1 = 0
-		<if test="FAQ_TITLE != null">
-			OR FAQ_TITLE LIKE '%${FAQ_TITLE}%'
+		SELECT * FROM FAQ WHERE 1 = 1
+		<if test="TITLE != null">
+			AND FAQ_TITLE LIKE '%${TITLE}%'
 		</if>
-		<if test="FAQ_CONTENT != null">
-			OR FAQ_CONTENT LIKE '%${FAQ_CONTENT}%'
+		<if test="CONTENT != null">
+			AND FAQ_CONTENT LIKE '%${CONTENT}%'
 		</if>
 		<if test="type == 0">
-			or 1=1
+			OR 1=1
 		</if>
 		AND FAQ_DELETE_DATE IS NULL
 		order by FAQ_NO DESC)
@@ -211,11 +211,11 @@
 		SELECT * FROM(
 		SELECT ROWNUM AS RN,A.* FROM NOTICE A
 		WHERE 1=1
-		<if test="NOTICE_TITLE != null">
-			AND NOTICE_TITLE LIKE '%${NOTICE_TITLE}%'
+		<if test="TITLE != null">
+			AND NOTICE_TITLE LIKE '%${TITLE}%'
 		</if>
-		<if test="NOTICE_CONTENT != null">
-			AND NOTICE_CONTENT LIKE '%${NOTICE_CONTENT}%'
+		<if test="CONTENT != null">
+			AND NOTICE_CONTENT LIKE '%${CONTENT}%'
 		</if>
 		<if test="M_ID != null">
 			AND M_ID LIKE '%#{M_ID}%'
@@ -231,11 +231,11 @@
 		resultType="int">
 		select count(*) from notice
 		WHERE 1=1
-		<if test="NOTICE_TITLE != null">
-			AND NOTICE_TITLE LIKE '%${NOTICE_TITLE}%'
+		<if test="TITLE != null">
+			AND NOTICE_TITLE LIKE '%${TITLE}%'
 		</if>
-		<if test="NOTICE_CONTENT != null">
-			AND NOTICE_CONTENT LIKE '%${NOTICE_CONTENT}%'
+		<if test="CONTENT != null">
+			AND NOTICE_CONTENT LIKE '%${CONTENT}%'
 		</if>
 		<if test="M_ID != null">
 			AND M_ID LIKE '%#{M_ID}%'

@@ -69,18 +69,18 @@
 <!-- 	public ArrayList<Recruit> getListRecruit(HashMap<String,Object> params); -->
 	<select id="getListRecruit" parameterType="java.util.HashMap" resultType="RecruitVO">
 	SELECT * FROM ( SELECT ROWNUM AS RN, A.* FROM(
-	SELECT * FROM RECRUIT WHERE 1 = 0
-		<if test="REC_TITLE != null">
-		    OR REC_TITLE LIKE '%${REC_TITLE}%'
+	SELECT * FROM RECRUIT WHERE 1 = 1
+		<if test="TITLE != null">
+		    AND REC_TITLE LIKE '%${TITLE}%'
 		</if>
-		<if test="REC_CONTENT != null">
-		    OR REC_CONTENT LIKE '%${REC_CONTENT}%'
+		<if test="CONTENT != null">
+		    AND REC_CONTENT LIKE '%${CONTENT}%'
 		</if>
 		<if test="M_ID != null">
-        	OR M_ID LIKE '%${M_ID}%'
+        	AND M_ID LIKE '%${M_ID}%'
 		</if>
 		<if test="type == 0">
-				    or 1=1	   
+				    OR 1=1	   
 		</if>
 		<if test="REC_DESTINATION != null">
 			AND REC_DESTINATION LIKE '%${REC_DESTINATION}%'
@@ -95,7 +95,7 @@
 			AND REC_NO = #{REC_NO}
 		</if>
 		<if test="startdate != null">
-		   and REC_CREATE_DATE 
+		   AND REC_CREATE_DATE 
       	  between #{startdate} and #{enddate}
 		</if>
 		AND REC_DELETE_DATE IS NULL
@@ -107,18 +107,18 @@
 	</select>
 	<select id="getCount" resultType="int" parameterType="java.util.HashMap">
  SELECT count(*) FROM ( SELECT ROWNUM AS RN, A.* FROM(
-	SELECT * FROM RECRUIT WHERE 1 = 0
-		<if test="REC_TITLE != null">
-		    OR REC_TITLE LIKE '%${REC_TITLE}%'
+	SELECT * FROM RECRUIT WHERE 1 = 1
+		<if test="TITLE != null">
+		    AND REC_TITLE LIKE '%${TITLE}%'
 		</if>
-		<if test="REC_CONTENT != null">
-		    OR REC_CONTENT LIKE '%${REC_CONTENT}%'
+		<if test="CONTENT != null">
+		    AND REC_CONTENT LIKE '%${CONTENT}%'
 		</if>
 		<if test="M_ID != null">
-        	OR M_ID LIKE '%${M_ID}%'
+        	AND M_ID LIKE '%${M_ID}%'
 		</if>
 		<if test="type == 0">
-				    or 1=1	   
+				    OR 1=1	   
 		</if>
 		<if test="REC_DESTINATION != null">
 			AND REC_DESTINATION LIKE '%${REC_DESTINATION}%'

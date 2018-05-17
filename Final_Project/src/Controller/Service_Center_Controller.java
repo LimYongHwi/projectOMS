@@ -74,7 +74,7 @@ public class Service_Center_Controller {
 		params.put("keyword", keyword);
 		params.put("type", type);
 
-		if(keyword != null || type != 0) {params.put("title", keyword); params.put("content", keyword);}
+		if(keyword != null || type != 0) {params.put("TITLE", keyword); params.put("CONTENT", keyword);}
 		
 		HashMap<String, Object> result = (HashMap<String, Object>) SCservice.selectAllService(params,page);
 		mav.addAllObjects(result);
@@ -178,7 +178,7 @@ public class Service_Center_Controller {
 		params.put("keyword", keyword);
 		params.put("type", type);
 
-		if(keyword != null || type != 0) {params.put("title", keyword); params.put("content", keyword);}
+		if(keyword != null || type != 0) {params.put("TITLE", keyword); params.put("CONTENT", keyword);}
 		
 		HashMap<String, Object> result = (HashMap<String, Object>) SCservice.getFAQList(params,page);
 		mav.addAllObjects(result);

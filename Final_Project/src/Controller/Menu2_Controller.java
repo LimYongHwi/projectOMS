@@ -54,9 +54,9 @@ public class Menu2_Controller {
 		HashMap<String,Object> params=new HashMap<>();
 		params.put("type", type);
 		if(type==1||type==3){
-			params.put("REV_TITLE",keyword);
+			params.put("TITLE",keyword);
 		}if(type==2||type==3){
-			params.put("REV_CONTENT",keyword);
+			params.put("CONTENT",keyword);
 		}
 		if(type==4){
 			params.put("M_ID",keyword);
@@ -169,9 +169,9 @@ public class Menu2_Controller {
 		HashMap<String,Object> params=new HashMap<>();
 		params.put("type", type);
 		if(type==1||type==3){
-			params.put("REV_TITLE",keyword);
+			params.put("TITLE",keyword);
 		}if(type==2||type==3){
-			params.put("REV_CONTENT",keyword);
+			params.put("CONTENT",keyword);
 		}
 		if(type==4){
 			params.put("M_ID",keyword);

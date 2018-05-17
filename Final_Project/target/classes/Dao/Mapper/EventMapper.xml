@@ -71,15 +71,15 @@
  	SELECT * FROM (
  	SELECT ROWNUM AS RN, A.* FROM(
  	SELECT * FROM EVENT 
- 	WHERE 1=0
- 	<if test="EVT_TITLE != NULL">
- 	OF EVT_TITLE LIKE '%${EVT_TITLE}%'
+ 	WHERE 1=1
+ 	<if test="TITLE != NULL">
+ 	AND EVT_TITLE LIKE '%${TITLE}%'
  	</if>
- 	<if test="EVT_CONTENT != null">
-			OR EVT_CONTENT LIKE '%${EVT_CONTENT}%'
+ 	<if test="CONTENT != null">
+			AND EVT_CONTENT LIKE '%${CONTENT}%'
 	</if>
 	<if test="type == 0">
-			OR 1=1
+			AND 1=1
 	</if>
 	<if test="EVT_END != null">
 			AND EVT_END LIKE '%${EVT_END}%'
@@ -109,12 +109,12 @@
  	SELECT COUNT(*) FROM (
  	SELECT ROWNUM AS RN, A.* FROM(
  	SELECT * FROM EVENT 
- 	WHERE 1=0
- 	<if test="EVT_TITLE != NULL">
- 	OF EVT_TITLE LIKE '%${EVT_TITLE}%'
+ 	WHERE 1=1
+ 	<if test="TITLE != NULL">
+ 	AND EVT_TITLE LIKE '%${TITLE}%'
  	</if>
- 	<if test="EVT_CONTENT != null">
-			OR EVT_CONTENT LIKE '%${EVT_CONTENT}%'
+ 	<if test="CONTENT != null">
+			AND EVT_CONTENT LIKE '%${CONTENT}%'
 	</if>
 	<if test="type == 0">
 			OR 1=1

@@ -83,21 +83,18 @@
 		SELECT * FROM ( SELECT ROWNUM AS RN, A.* FROM(
 		SELECT * FROM
 		INFORMATION
-		WHERE 1 = 0
-		<if test="INFO_TITLE != null">
-			OR INFO_TITLE LIKE '%${INFO_TITLE}%'
+		WHERE 1 = 1
+		<if test="TITLE != null">
+			AND INFO_TITLE LIKE '%${TITLE}%'
 		</if>
-		<if test="INFO_CONTENT != null">
-			OR INFO_CONTENT LIKE '%${INFO_CONTENT}%'
+		<if test="CONTENT != null">
+			AND INFO_CONTENT LIKE '%${CONTENT}%'
 		</if>
 		<if test="M_ID != null">
-			OR M_ID LIKE '%${M_ID}%'
+			AND M_ID LIKE '%${M_ID}%'
 		</if>
 		<if test="INFO_PLACE != null">
-			OR INFO_PLACE LIKE '%${INFO_PLACE}%'
-		</if>
-		<if test="type == 0">
-			OR 1=1
+			AND INFO_PLACE LIKE '%${INFO_PLACE}%'
 		</if>
 		<if test="INFO_NO != null">
 			AND INFO_NO = #{INFO_NO}
@@ -118,18 +115,18 @@
 		resultType="int">
 		SELECT COUNT(*) FROM ( SELECT ROWNUM AS RN, A.* FROM(
 		SELECT * FROM
-		INFORMATION WHERE 1 = 0
-		<if test="INFO_TITLE != null">
-			OR INFO_TITLE LIKE '%${INFO_TITLE}%'
+		INFORMATION WHERE 1 = 1
+		<if test="TITLE != null">
+			AND INFO_TITLE LIKE '%${TITLE}%'
 		</if>
-		<if test="INFO_CONTENT != null">
-			OR INFO_CONTENT LIKE '%${INFO_CONTENT}%'
+		<if test="CONTENT != null">
+			AND INFO_CONTENT LIKE '%${CONTENT}%'
 		</if>
 		<if test="M_ID != null">
-			OR M_ID LIKE '%${M_ID}%'
+			AND M_ID LIKE '%${M_ID}%'
 		</if>
 		<if test="INFO_PLACE != null">
-			OR INFO_PLACE LIKE '%${INFO_PLACE}%'
+			AND INFO_PLACE LIKE '%${INFO_PLACE}%'
 		</if>
 		<if test="type == 0">
 			OR 1=1

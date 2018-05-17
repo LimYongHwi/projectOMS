@@ -97,15 +97,36 @@ public class MainController {
 
 	@RequestMapping("SearchForm.do")
 	public String searchForm(){
-		return "Search_Form";
+		return "redirect:search.do";
 	}
 	@RequestMapping("search.do")
 	public ModelAndView search(
-			@RequestParam(defaultValue="1,2,3,4")String[] select,
+			@RequestParam(defaultValue="0")int type,
+			@RequestParam(defaultValue="5")String[] select,
+			@RequestParam(required=false)String keyword,
 			@RequestParam()HashMap<String, Object> params){
-		//전체검색부분
+		//전체검색부분  
+		
+		//타입에 따라서 분개, 타이틀 이름 컬럼명 ?<<테이블마다 다르기떄문에...문제있네//검색어로 title , content 이름 다 변경.
+		//
 		ModelAndView mav = new ModelAndView();
-		params.put("type", 1);
+		params.put("type", type);
+		if(type==1||type==3){
+			params.put("TITLE", keyword);			
+		}
+		if(type==2||type==3){
+			params.put("CONTENT", keyword);
+		}if(type==4){
+			params.put("M_ID", keyword);
+		}
+		
+		if(select[0].equals("5")){
+		select = new String[4];
+			select[0]="1";
+			select[1]="2";
+			select[2]="3";
+			select[3]="4";
+		}
 		for(String a:select){
 			System.out.print(a+" ");
 			switch(a){

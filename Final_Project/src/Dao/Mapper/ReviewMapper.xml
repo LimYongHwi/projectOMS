@@ -89,18 +89,18 @@
 		resultType="int">
 		SELECT COUNT(*) FROM ( SELECT ROWNUM AS RN, A.* FROM(
 		SELECT * FROM
-		REVIEW WHERE 1 = 0
-		<if test="REV_TITLE != null">
-			OR REV_TITLE LIKE '%${REV_TITLE}%'
+		REVIEW WHERE 1 = 1
+		<if test="TITLE != null">
+			AND REV_TITLE LIKE '%${TITLE}%'
 		</if>
-		<if test="REV_CONTENT != null">
-			OR REV_CONTENT LIKE '%${REV_CONTENT}%'
+		<if test="CONTENT != null">
+			AND REV_CONTENT LIKE '%${CONTENT}%'
 		</if>
 		<if test="M_ID != null">
-			OR M_ID LIKE '%${M_ID}%'
+			AND M_ID LIKE '%${M_ID}%'
 		</if>
 		<if test="REV_DESTINATION != null">
-			OR REV_DESTINATION LIKE '%${REV_DASTINATION}%'
+			AND REV_DESTINATION LIKE '%${REV_DASTINATION}%'
 		</if>
 		<if test="type == 0">
 			OR 1=1
@@ -123,18 +123,18 @@
 		resultType="ReviewVO">
 		SELECT * FROM ( SELECT ROWNUM AS RN, A.* FROM(
 		SELECT * FROM REVIEW
-		WHERE 1 = 0
-		<if test="REV_TITLE != null">
-			OR REV_TITLE LIKE '%${REV_TITLE}%'
+		WHERE 1 = 1
+		<if test="TITLE != null">
+			AND REV_TITLE LIKE '%${TITLE}%'
 		</if>
-		<if test="REV_CONTENT != null">
-			OR REV_CONTENT LIKE '%${REV_CONTENT}%'
+		<if test="CONTENT != null">
+			AND REV_CONTENT LIKE '%${CONTENT}%'
 		</if>
 		<if test="M_ID != null">
-			OR M_ID LIKE '%${M_ID}%'
+			AND M_ID LIKE '%${M_ID}%'
 		</if>
 		<if test="REV_DESTINATION != null">
-			OR REV_DESTINATION LIKE '%${REV_DASTINATION}%'
+			AND REV_DESTINATION LIKE '%${REV_DASTINATION}%'
 		</if>
 		<if test="type == 0">
 			OR 1=1

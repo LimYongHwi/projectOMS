@@ -36,10 +36,10 @@ public class Menu3_Controller {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("type", type);
 		if (type == 1 || type == 3) {
-			params.put("EVT_TITLE", keyword);
+			params.put("TITLE", keyword);
 		}
 		if (type == 2 || type == 3) {
-			params.put("EVT_CONTENT", keyword);
+			params.put("CONTENT", keyword);
 		}
 		if (startdate != null && enddate != null) {
 			params.put("startdate", startdate);
@@ -124,10 +124,10 @@ public class Menu3_Controller {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("type", type);
 		if (type == 1 || type == 3) {
-			params.put("EVT_TITLE", keyword);
+			params.put("TITLE", keyword);
 		}
 		if (type == 2 || type == 3) {
-			params.put("EVT_CONTENT", keyword);
+			params.put("CONTENT", keyword);
 		}
 		if (startdate != null && enddate != null) {
 			params.put("startdate", startdate);

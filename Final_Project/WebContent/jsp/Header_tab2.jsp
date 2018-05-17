@@ -98,7 +98,7 @@
 <li onclick="location.href='recruit_main.do'">모집/계획</li>|
 <li onclick="location.href='review_Main.do'">여행정보/후기</li>|
 <li onclick="location.href='service_center_main.do'">고객센터</li>|
-<li id="icon"><img src="image/loupe.png"></li>
+<li id="icon"><img src="image/loupe.png" onclick="location.href='SearchForm.do'"></li>
 <li id="icon"><img src="image/menu.png"></li>
 </ul>
 </div>

@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
@@ -94,4 +95,37 @@ public class MainController {
 		}
 	}
 
+	@RequestMapping("SearchForm.do")
+	public String searchForm(){
+		return "Search_Form";
+	}
+	@RequestMapping("search.do")
+	public ModelAndView search(
+			@RequestParam(defaultValue="1,2,3,4")String[] select,
+			@RequestParam()HashMap<String, Object> params){
+		//전체검색부분
+		ModelAndView mav = new ModelAndView();
+		params.put("type", 1);
+		for(String a:select){
+			System.out.print(a+" ");
+			switch(a){
+			case "1":
+				mav.addObject("recruit",recService.getRecruitList(1, params));
+				break;
+			case "2":
+				mav.addObject("plan",pService.getPlanList(1, params));
+				break;
+			case "3":
+				mav.addObject("review",revService.getReviewList(params, 1));
+				break;
+			case "4":
+				mav.addObject("info",infoService.getInfomationList(params, 1));
+				break;
+			}			
+		}
+		System.out.println(params.toString());
+		mav.setViewName("Search_Form");
+		return mav;		
+	}
+	
 }

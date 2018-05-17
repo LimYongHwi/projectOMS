@@ -1,0 +1,67 @@
+@CHARSET "UTF-8";
+
+
+
+dt{
+width:20%;
+text-align:center;
+padding:0;
+float:left;
+font-weight: bold;
+}
+dd{
+width:80%;
+margin:10px 0 10px 0;
+padding:0;
+}
+
+
+.sliding{
+	background: #6fe0eb;
+    text-align: center;
+    height:20px;
+}
+.sliding b{
+	font-size:24px;
+}
+
+.section{
+	width:1060px;
+	margin: 0 auto;
+}
+
+.section .title{
+	margin-left: 10px;
+    background: #6fe0eb;
+    color: white;
+    margin: 0 0px 0px 0px;
+}
+.section .title h2{
+	margin: 0 0 0 30px;
+}
+
+.result{
+	margin:0 auto;
+}
+.result table{
+	margin:0 auto;
+}
+.result th{
+	background:#dff3f3;
+}
+.result td{
+	text-align:center;
+	background: #f1f1f1;
+}
+
+input[type=submit]{
+	background: #21afbd;
+    border-radius: 7px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    align-items: right;
+    margin: 0 0 0 950px;
+}
+
+

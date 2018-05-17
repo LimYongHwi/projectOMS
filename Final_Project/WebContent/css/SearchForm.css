@@ -64,4 +64,13 @@ input[type=submit]{
     margin: 0 0 0 950px;
 }
 
+.paging{
+	margin: 10px 0 10px 0;
+	text-align:center;
+}
+
+.paging .current{
+	color:blue;
+}
+
 

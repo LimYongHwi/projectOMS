@@ -97,30 +97,32 @@ public File getAttachFile(PlanVO plan) {
 	@Override
 	public HashMap<String,Object> getPlanList(int page, HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
-		params.put("current", page);
-		params.put("START", getStartPage(page));
-		params.put("END", getEndPage(page));
 		params.put("STARTRN", page*10-9);
 		params.put("ENDRN",page*10);
-		ArrayList<PlanVO> result=Pdao.getListPlan(params);
-		params.put("plan", result);
-		params.put("LAST",getLastPage(params));
-		params.put("SKIP", getSkip(page,10));
+		HashMap<String,Object> result= new HashMap<>();
+		result.put("current", page);
+		result.put("START", getStartPage(page));
+		result.put("END", getEndPage(page));
+		ArrayList<PlanVO> plan=Pdao.getListPlan(params);
+		result.put("plan", plan);
+		result.put("LAST",getLastPage(params));
+		result.put("SKIP", getSkip(page,10));
 		
-		return params;
+		return result;
 	}
 
 	@Override
 	public HashMap<String, Object> getPlan_ApplyList(int page, HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
-		params.put("current", page);
-		params.put("START", getStartPage(page));
-		params.put("END", getEndPage(page));
 		params.put("STARTRN", page*5-4);
 		params.put("ENDRN",page*5);
-		params.put("RefrenceList",Pdao.getPlan_ApplyList(params));
-		params.put("LAST",getLastPage_Apply(params));
-		params.put("SKIP", getSkip(page,5));
+		HashMap<String,Object> result= new HashMap<>();
+		result.put("current", page);
+		result.put("START", getStartPage(page));
+		result.put("END", getEndPage(page));
+		result.put("RefrenceList",Pdao.getPlan_ApplyList(params));
+		result.put("LAST",getLastPage_Apply(params));
+		result.put("SKIP", getSkip(page,5));
 		return params;
 	}
 	

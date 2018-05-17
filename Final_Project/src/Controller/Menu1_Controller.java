@@ -64,7 +64,7 @@ public class Menu1_Controller {
 			Model model){
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("keyword", keyword);
-		if(keyword==null)
+		if(keyword==null||keyword.equals(""))
 			type=0;
 		
 		

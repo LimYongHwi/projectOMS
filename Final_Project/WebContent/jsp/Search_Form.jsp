@@ -62,6 +62,43 @@ function valuecheck(){
 	
 	return true;
 }
+
+function createPage(elementId,current,start,end,last){
+	console.log("createPage"+elementId+"   current"+current+"   start"+start+"   end"+end+"   last"+last);
+	var div=$("#"+elementId);
+	var CURRENT=parseInt(current);
+	var START=parseInt(start);
+	var END=parseInt(end);
+	var LAST=parseInt(last);
+	var pre=START-10;
+	var next=START+10;
+	
+	div.empty();
+	if(CURRENT!=1){
+		div.append("<b onclick='movePage(\""+elementId+"\",1)'>[처음]</b>");
+		if(pre>=1)
+		div.append("<b onclick='movePage(\""+elementId+"\","+pre+")'>[이전]</b>");
+	}
+	var rLAST=END<LAST?END:LAST;
+	for(var i=START; i<=rLAST;i++){
+		if(i==CURRENT){
+			div.append("<b class='current'> "+i+" </b>");
+		}else
+		div.append("<b onclick='movePage(\""+elementId+"\","+i+")'> "+i+" </b>");
+	}
+	if(CURRENT<LAST){
+		if(next<=LAST)
+		div.append("<b onclick='movePage(\""+elementId+"\","+next+")'>[다음]</b>");
+		div.append("<b onclick='movePage(\""+elementId+"\","+LAST+")'>[마지막]</b>");
+	}
+}
+
+function movePage(inputElement,pageNum){
+	console.log(inputElement)
+	console.log(pageNum)
+	$("input[name="+inputElement+"]").val(pageNum);
+	$("#searchForm").submit();
+}
 </script>
 
 
@@ -74,17 +111,18 @@ function valuecheck(){
 <div class="title"><h2>통합검색</h2></div>
 <hr>
 <div class="searchForm">
-<form action="search.do" method="post">
+<form action="search.do" method="post" id="searchForm">
 <dl>
-<dt><select name="type">
+<dt>
+<select name="type">
 <option value="1">제목</option>
 <option value="2">내용</option>
 <option value="3">제목+내용</option>
 </select></dt>
 <dd>
-<input type="text" name="keyword"></dd>
+<input type="text" name="keyword" value="${keyword}"></dd>
 <dt>작성자</dt>
-<dd><input type="text" name="M_ID"></dd>
+<dd><input type="text" name="M_ID" valie="${M_ID}"></dd>
 <dt>선택</dt>
 <dd><input type="checkbox" name="selectAll" class="selAll" onclick="checkAll($(this))">전체
 <input type="checkbox" name="select" value="1" class="selOne" onclick="checkOne($(this))">모집게시판
@@ -121,7 +159,8 @@ function valuecheck(){
 	<c:when test="${fn:length(recruit.Recruit)<1}">
 	<tr><td colspan="5">검색결과가 없습니다.</td></tr>
 	</c:when>
-<c:otherwise>
+	<c:otherwise>
+	<input type="hidden" value="${recruit.current}" name="recPage" form="searchForm">
 	<c:forEach var="r" items="${recruit.Recruit }">
 	<tr>
 	<td>${r.REC_NO}</td>
@@ -132,6 +171,11 @@ function valuecheck(){
 	</c:forEach>
 		</c:otherwise></c:choose>
 	</table>
+	<div id="recPage" class="paging">
+	<script type="text/javascript">
+	createPage("recPage",${recruit.current},${recruit.START},${recruit.END},${recruit.LAST});
+	</script>
+	</div>
 	<hr>
 	</div>
 	
@@ -153,6 +197,7 @@ function valuecheck(){
 	<tr><td colspan="5">검색결과가 없습니다.</td></tr>
 	</c:when>
 	<c:otherwise>
+	<input type="hidden" value="${plan.current}" name="planPage" form="searchForm">
 	<c:forEach var="p" items="${plan.plan}">
 	<tr>
 	<td>${p.PLAN_NO}</td>
@@ -163,6 +208,11 @@ function valuecheck(){
 	</c:forEach>
 	</c:otherwise></c:choose>
 	</table>
+	<div id="planPage" class="paging">
+	<script type="text/javascript">
+	createPage("planPage",${plan.current},${plan.START},${plan.END},${plan.LAST});
+	</script>
+	</div>
 	<hr>
 	</div>	
 	
@@ -183,6 +233,7 @@ function valuecheck(){
 	<tr><td colspan="5">검색결과가 없습니다.</td></tr>
 	</c:when>
 	<c:otherwise>
+	<input type="hidden" value="${review.current}" name="revPage" form="searchForm">
 	<c:forEach var="r" items="${review.reviewList}">
 	<tr>
 	<td>${r.REV_NO}</td>
@@ -193,6 +244,11 @@ function valuecheck(){
 	</c:forEach>
 	</c:otherwise></c:choose>
 	</table>
+	<div id="revPage" class="paging">
+	<script type="text/javascript">
+	createPage("revPage",${review.current},${review.START},${review.END},${review.LAST});
+	</script>
+	</div>
 	<hr>
 	</div>
 	
@@ -214,6 +270,7 @@ function valuecheck(){
 	<tr><td colspan="5">검색결과가 없습니다.</td></tr>
 	</c:when>
 	<c:otherwise>
+	<input type="hidden" value="${info.current}" name="infoPage" form="searchForm">
 	<c:forEach var="i" items="${info.infoList}">
 	<tr>
 	<td>${i.INFO_NO}</td>
@@ -224,6 +281,11 @@ function valuecheck(){
 	</c:forEach>
 	</c:otherwise></c:choose>
 	</table>
+	<div id="infoPage" class="paging">
+	<script type="text/javascript">
+	createPage("infoPage",${info.current},${info.START},${info.END},${info.LAST});
+	</script>
+	</div>
 	<hr>
 	</div>
 </div>

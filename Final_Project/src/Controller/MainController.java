@@ -101,6 +101,10 @@ public class MainController {
 	}
 	@RequestMapping("search.do")
 	public ModelAndView search(
+			@RequestParam(defaultValue="1") int recPage,
+			@RequestParam(defaultValue="1") int planPage,
+			@RequestParam(defaultValue="1")int revPage,
+			@RequestParam(defaultValue="1")int infoPage,
 			@RequestParam(defaultValue="0")int type,
 			@RequestParam(defaultValue="5")String[] select,
 			@RequestParam(required=false)String keyword,
@@ -127,24 +131,28 @@ public class MainController {
 			select[2]="3";
 			select[3]="4";
 		}
+		System.out.println("검색조건:"+params.toString());
 		for(String a:select){
-			System.out.print(a+" ");
 			switch(a){
 			case "1":
-				mav.addObject("recruit",recService.getRecruitList(1, params));
+				HashMap<String,Object> recruit=recService.getRecruitList(recPage, params);
+				System.out.println("mav에담길 recruit"+recruit);
+				mav.addObject("recruit",recruit);
 				break;
 			case "2":
-				mav.addObject("plan",pService.getPlanList(1, params));
+				HashMap<String,Object> plan=pService.getPlanList(planPage, params);
+				mav.addObject("plan",plan);
 				break;
 			case "3":
-				mav.addObject("review",revService.getReviewList(params, 1));
+				HashMap<String,Object> review=revService.getReviewList(params, revPage);
+				mav.addObject("review",review);
 				break;
 			case "4":
-				mav.addObject("info",infoService.getInfomationList(params, 1));
+				HashMap<String,Object> info=infoService.getInfomationList(params, infoPage);
+				mav.addObject("info",info);
 				break;
 			}			
 		}
-		System.out.println(params.toString());
 		mav.setViewName("Search_Form");
 		return mav;		
 	}

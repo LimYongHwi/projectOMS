@@ -109,31 +109,33 @@ public class Recruit_ServiceImp implements Recruit_Service{
 	@Override
 	public HashMap<String,Object> getRecruitList(int page, HashMap<String,Object> params) {
 		// TODO Auto-generated method stub
-		params.put("current", page);
-		params.put("START", getStartPage(page));
-		params.put("END", getEndPage(page));
 		params.put("STARTRN", page*10-9);
 		params.put("ENDRN",page*10);
-		ArrayList<RecruitVO> result=recDao.getListRecruit(params);
-		params.put("Recruit", result);
-		params.put("LAST",getLastPage(params));
-		params.put("SKIP", getSkip(page,10));
-		return params;
+		HashMap<String,Object> result= new HashMap<String,Object>();
+		result.put("current", page);
+		result.put("START", getStartPage(page));
+		result.put("END", getEndPage(page));
+		ArrayList<RecruitVO> select=recDao.getListRecruit(params);
+		result.put("Recruit", select);
+		result.put("LAST",getLastPage(params));
+		result.put("SKIP", getSkip(page,10));
+		return result;
 	}
 
 	@Override
 	public HashMap<String,Object> getRecruit_ApplyList(int page, HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
-		params.put("current", page);
-		params.put("START", getStartPage(page));
-		params.put("END", getEndPage(page));
 		params.put("STARTRN", page*5-4);
 		params.put("ENDRN",page*5);
-		ArrayList<HashMap<String , Object>> result=recDao.getRecruit_ApplyList(params);
-		params.put("RefrenceList", result);
-		params.put("LAST",getLastPage_Apply(params));
-		params.put("SKIP", getSkip(page,5));
-		return params;
+		HashMap<String,Object> result= new HashMap<String,Object>();
+		result.put("current", page);
+		result.put("START", getStartPage(page));
+		result.put("END", getEndPage(page));
+		ArrayList<HashMap<String , Object>> search=recDao.getRecruit_ApplyList(params);
+		result.put("RefrenceList", search);
+		result.put("LAST",getLastPage_Apply(params));
+		result.put("SKIP", getSkip(page,5));
+		return result;
 	}
 	@Override
 	public boolean checkApply(Recruit_ApplyVO recruit_Apply) {
@@ -204,7 +206,7 @@ public class Recruit_ServiceImp implements Recruit_Service{
 
 	@Override
 	public int getEndPage(int num) {
-		return (num/10+1)*10;
+		return (((num-1)/10)+1)*10;
 	}
 
 	@Override

@@ -115,15 +115,16 @@ public class Review_ServiceImpl implements Review_Service{
 	@Override
 	public HashMap<String, Object> getReviewList(HashMap<String, Object> params, int page) {
 		// TODO Auto-generated method stub
-		params.put("current", page);
-		params.put("START", ((page-1)/10*10+1));
-		params.put("END", ((page/10+1)*10));
 		params.put("STARTRN",page*10-9);
 		params.put("ENDRN",page*10);
-		params.put("reviewList", RDao.getReviewList(params));
-		params.put("SKIP", ((page-1)*10));
-		params.put("LAST",getLastPage(params));
-		return params;
+		HashMap<String, Object>result = new HashMap<>();
+		result.put("current", page);
+		result.put("START", ((page-1)/10*10+1));
+		result.put("END", ((page/10+1)*10));
+		result.put("reviewList", RDao.getReviewList(params));
+		result.put("SKIP", ((page-1)*10));
+		result.put("LAST",getLastPage(params));
+		return result;
 	}
 
 	@Override

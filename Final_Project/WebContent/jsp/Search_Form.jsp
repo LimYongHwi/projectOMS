@@ -52,12 +52,10 @@ function valuecheck(){
 	if(!$(".selAll").prop("checked")){
 		$(".selOne").each(function(index){
 			if($(this).prop("checked")){
-				console.log(index+"체크댐")
 				checkedval.push($(this).val())
 			}
 		})
 		$("input[name=selected]").val(checkedval);
-		console.log(checkedval)
 		console.log($("input[name=selected]").val())
 	}
 	
@@ -108,6 +106,14 @@ function movePage(inputElement,pageNum){
 <body>
 <jsp:include page="Header.jsp"></jsp:include>
 <div class="section">
+타입${type }<br>
+키워드${keyword}<br>
+체크여부
+${rec_check }
+${rev_check }<br>
+${plan_check }<br>
+${info_check }<br>
+</script>
 <hr>
 <div class="title"><h2>통합검색</h2></div>
 <hr>
@@ -126,10 +132,10 @@ function movePage(inputElement,pageNum){
 <dd><input type="text" name="M_ID" valie="${M_ID}"></dd>
 <dt>선택</dt>
 <dd><input type="checkbox" name="selectAll" class="selAll" onclick="checkAll($(this))">전체
-<input type="checkbox" name="select" value="1" class="selOne" onclick="checkOne($(this))">모집게시판
-<input type="checkbox" name="select" value="2" class="selOne" onclick="checkOne($(this))">계획게시판
-<input type="checkbox" name="select" value="3" class="selOne" onclick="checkOne($(this))">후기게시판
-<input type="checkbox" name="select" value="4" class="selOne" onclick="checkOne($(this))">여행정보게시판
+<input type="checkbox" name="select" value="1" class="selOne" onclick="checkOne($(this))" ${rec_check }>모집게시판
+<input type="checkbox" name="select" value="2" class="selOne" onclick="checkOne($(this))" ${plan_check }>계획게시판
+<input type="checkbox" name="select" value="3" class="selOne" onclick="checkOne($(this))" ${rev_check }>후기게시판
+<input type="checkbox" name="select" value="4" class="selOne" onclick="checkOne($(this))" ${info_check }>여행정보게시판
 <input type="hidden" name="selected">
 </dd>
 <dt></dt>

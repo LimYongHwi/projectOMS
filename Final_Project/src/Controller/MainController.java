@@ -114,7 +114,8 @@ public class MainController {
 		//타입에 따라서 분개, 타이틀 이름 컬럼명 ?<<테이블마다 다르기떄문에...문제있네//검색어로 title , content 이름 다 변경.
 		//
 		ModelAndView mav = new ModelAndView();
-		params.put("type", type);
+		mav.addObject("keyword", keyword);
+		mav.addObject("type", type);
 		if(type==1||type==3){
 			params.put("TITLE", keyword);			
 		}
@@ -138,18 +139,22 @@ public class MainController {
 				HashMap<String,Object> recruit=recService.getRecruitList(recPage, params);
 				System.out.println("mav에담길 recruit"+recruit);
 				mav.addObject("recruit",recruit);
+				mav.addObject("rec_check","checked");
 				break;
 			case "2":
 				HashMap<String,Object> plan=pService.getPlanList(planPage, params);
 				mav.addObject("plan",plan);
+				mav.addObject("plan_check","checked");
 				break;
 			case "3":
 				HashMap<String,Object> review=revService.getReviewList(params, revPage);
-				mav.addObject("review",review);
+				mav.addObject("rev",review);
+				mav.addObject("rev_check","checked");
 				break;
 			case "4":
 				HashMap<String,Object> info=infoService.getInfomationList(params, infoPage);
 				mav.addObject("info",info);
+				mav.addObject("info_check","checked");
 				break;
 			}			
 		}

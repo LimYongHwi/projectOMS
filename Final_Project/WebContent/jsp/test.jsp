@@ -76,30 +76,30 @@
    });
 
   </script>
-<link rel="stylesheet" href="css/Header.css">
-<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="../css/Header.css">
+<link rel="stylesheet" href="../css/reset.css">
 </head>
 <body class="headerbody">
 	<div class="slider">
 		<div>
-			<img src="image/mainslide_1.jpg" id="slide_1">
+			<img src="../image/mainslide_1.jpg" id="slide_1">
 		</div>
 		<div>
-			<img src="image/slide_2.jpg" id="slide_2">
+			<img src="../image/slide_2.jpg" id="slide_2">
 		</div>
 		<div>
-			<img src="image/slide_3.jpg" id="slide_3">
+			<img src="../image/slide_3.jpg" id="slide_3">
 		</div>
 		<div>
-			<img src="image/slide_4.jpg" id="slide_4">
+			<img src="../image/slide_4.jpg" id="slide_4">
 		</div>
 		<div>
-			<img src="image/slide_5.jpg" id="slide_5">
+			<img src="../image/slide_5.jpg" id="slide_5">
 		</div>
 	</div>
 	<div class="top">
 		<div class="logo">
-			<img src="image/logo.jpg" onclick="location.href='main.do'">
+			<img src="../image/logo.jpg" onclick="location.href='main.do'">
 		</div>
 		<div class="buttons">
 			<ul>
@@ -117,8 +117,8 @@
 				<li onclick="location.href='recruit_main.do'">모집/계획</li>|
 				<li onclick="location.href='review_Main.do'">여행정보/후기</li>|
 				<li onclick="location.href='service_center_main.do'">고객센터</li>|
-				<li id="icon"><img src="image/loupe.png" onclick="location.href='SearchForm.do'"></li>
-				<li id="icon"><img src="image/menu.png" class="fullMenu"></li>
+				<li id="icon"><img src="../image/loupe.png" onclick="location.href='SearchForm.do'"></li>
+				<li id="icon"><img src="../image/menu.png" class="fullMenu"></li>
 			</ul>
 		</div>
 	</div>

@@ -106,6 +106,7 @@ public class MainController {
 			@RequestParam(defaultValue="1")int revPage,
 			@RequestParam(defaultValue="1")int infoPage,
 			@RequestParam(defaultValue="0")int type,
+			@RequestParam(required=false)String M_ID,
 			@RequestParam(defaultValue="5")String[] select,
 			@RequestParam(required=false)String keyword,
 			@RequestParam()HashMap<String, Object> params){
@@ -115,14 +116,17 @@ public class MainController {
 		//
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("keyword", keyword);
+		mav.addObject("M_ID",M_ID);
 		mav.addObject("type", type);
 		if(type==1||type==3){
 			params.put("TITLE", keyword);			
 		}
 		if(type==2||type==3){
 			params.put("CONTENT", keyword);
-		}if(type==4){
-			params.put("M_ID", keyword);
+		}
+		
+		if(M_ID!=null){
+			params.put("M_ID", M_ID);
 		}
 		
 		if(select[0].equals("5")){

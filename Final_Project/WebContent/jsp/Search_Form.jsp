@@ -13,7 +13,9 @@
   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
   crossorigin="anonymous"></script>
 <script type="text/javascript">
-
+$(document).ready(function(){
+	checkOne();
+})
 function checkAll(checkbox){
 	if(	checkbox.prop("checked"))
 		$(".selOne").prop("checked",true);
@@ -23,6 +25,17 @@ function checkAll(checkbox){
 }
 function checkOne(checkbox){
 	var count =0;
+	
+	if(checkbox==undefined){
+		$(".selOne").each(function(index){
+			if($(this).prop("checked")){
+				count++;
+			}
+			if(count==4){
+				$(".selAll").prop("checked",true);
+			}
+		})
+	}else{
 	if(	checkbox.prop("checked")){
 		$(".selOne").each(function(index){
 			if($(this).prop("checked")){
@@ -36,6 +49,8 @@ function checkOne(checkbox){
 	}else{
 		$(".selAll").prop("checked",false);
 	}
+	}
+
 }
 $(document).ready(function(){
 	
@@ -106,13 +121,6 @@ function movePage(inputElement,pageNum){
 <body>
 <jsp:include page="Header.jsp"></jsp:include>
 <div class="section">
-타입${type }<br>
-키워드${keyword}<br>
-체크여부
-${rec_check }
-${rev_check }<br>
-${plan_check }<br>
-${info_check }<br>
 </script>
 <hr>
 <div class="title"><h2>통합검색</h2></div>
@@ -122,14 +130,14 @@ ${info_check }<br>
 <dl>
 <dt>
 <select name="type">
-<option value="1">제목</option>
-<option value="2">내용</option>
-<option value="3">제목+내용</option>
+<option value="1" <c:if test="${type==1}">selected</c:if>>제목</option>
+<option value="2" <c:if test="${type==2}">selected</c:if>>내용</option>
+<option value="3" <c:if test="${type==3}">selected</c:if>>제목+내용</option>
 </select></dt>
 <dd>
 <input type="text" name="keyword" value="${keyword}"></dd>
 <dt>작성자</dt>
-<dd><input type="text" name="M_ID" valie="${M_ID}"></dd>
+<dd><input type="text" name="M_ID" value="${M_ID}"></dd>
 <dt>선택</dt>
 <dd><input type="checkbox" name="selectAll" class="selAll" onclick="checkAll($(this))">전체
 <input type="checkbox" name="select" value="1" class="selOne" onclick="checkOne($(this))" ${rec_check }>모집게시판

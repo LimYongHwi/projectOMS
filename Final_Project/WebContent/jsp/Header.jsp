@@ -18,7 +18,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script type="text/javascript">
+
    $(document).ready(function(){
    	var id= "<%=(String) session.getAttribute("id")%>";
    	if(id=="null"){
@@ -74,10 +76,28 @@
      })
      
    });
-
+   
+   function googleTranslateElementInit() {
+     new google.translate.TranslateElement({pageLanguage: 'ko', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+     $(".goog-te-gadget-icon").remove();
+     console.dir($("#google_translate_element"));
+     $(".goog-te-gadget-simple").css("border",0);
+     console.dir($(".goog-te-menu-value:nth-child(3)"));
+     $(".goog-te-gadget-simple>span").css({"vertical-align": "inherit"})
+     $(".goog-te-menu-value>span:nth-child(1)").remove();
+     $(".goog-te-menu-value>span:nth-child(2)").remove();
+     $(".goog-te-menu-value>span").css({
+    	 "color":"black",
+    	 "vertical-align": "inherit"
+     });
+     
+     $(".goog-te-menu-value").children('img').remove();
+   }
+  
   </script>
 <link rel="stylesheet" href="css/Header.css">
 <link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/fullMenu.css">
 </head>
 <body class="headerbody">
 	<div class="slider">
@@ -106,8 +126,9 @@
 				<div id="login_div" style="display: -webkit-inline-box">
 					<li id="login"></li>|
 					<li id="join"></li>|
+				<li id="login">번역<div id="google_translate_element"></div>
+				</li>
 				</div>
-				<li id="login">번역</li>
 			</ul>
 		</div>
 	</div>
@@ -125,28 +146,28 @@
 	<div id="fullMenu" style="display: none;">
 		<div>
 			<ul>
-				<li>통합검색</li>
-				<li>모집게시판</li>
-				<li>계획게시판</li>
+				<li onclick="location.href='search.do'">통합검색</li>
+				<li onclick="location.href='recruit_main.do'">모집게시판</li>
+				<li onclick="location.href='plan_main.do'">계획게시판</li>
 			</ul>
 		</div>
 		<div>
 			<ul>
-				<li>여행정보게시판</li>
-				<li>후기게시판</li>
+				<li onclick="location.href='info_Main.do'">여행정보게시판</li>
+				<li onclick="location.href='review_Main.do'">후기게시판</li>
 			</ul>
 		</div>
 		<div>
 			<ul>
-				<li>공지사항</li>
-				<li>1:1문의</li>
-				<li>이벤트</li>
+				<li onclick="location.href='notice_main.do'">공지사항</li>
+				<li onclick="location.href='service_center_main.do'">1:1문의</li>
+				<li onclick="location.href='event_main.do'">이벤트</li>
 			</ul>
 		</div>
 		<div>
 			<ul>
-				<li>마이페이지</li>
-				<li>사진첩</li>
+				<li onclick="location.href='my.do'">마이페이지</li>
+				<li><a href="myAlbum.do" target="_blank">사진첩</a></li>
 			</ul>
 		</div>
 	</div>

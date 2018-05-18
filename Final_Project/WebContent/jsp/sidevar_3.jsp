@@ -49,9 +49,11 @@ text-decoration: none;
 <div class="sidevar">
 <div class="title_tb">
 <p style="font-size: 13px; color:white">OH MY SOULMATE</p>
+
 <p class="title" style="font-size: 30px; color:white">고객센터</p>
 </div>
 <ul>
+<li class="sub_faq"><a href="faq_main.do">FAQ</a></li>
 <li class="sub_notice"><a href="notice_main.do">공지사항</a></li>
 <li class="sub_review">
 <a href='service_center_main.do'> 1:1 문의하기 </a>

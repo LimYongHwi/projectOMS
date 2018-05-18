@@ -27,13 +27,18 @@
 	
 	function faq_tab(page, tab_no){
 		$.ajax({
-			type: 'get',
+			type: 'post',
 			url: 'getFAQList.do',
-			dataType: 'text',
-			data:"page="+page+"&tab_no="+tab_no,
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+			dataType: 'json',
+			async : true,
+			data:{
+			"page":page,
+			"tab_no":tab_no},
 			
 			success:function(data){
-				var datas= JSON.parse(data);
+				console.dir(data)
+				var datas= data;
 				var tabname = ["-","모집/계획관련", "이벤트관련", "회원관련"];
 				
 				console.log(datas);

@@ -1,9 +1,11 @@
 package Controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
@@ -187,26 +189,27 @@ public class Service_Center_Controller {
 	}
 	
 	
-	@RequestMapping(value="getFAQList.do", method=RequestMethod.GET)
-	@ResponseBody
-	public void getFAQList(
+	@RequestMapping(value="getFAQList.do",method=RequestMethod.POST)
+	public @ResponseBody String getFAQList(
 			@RequestParam(defaultValue="1") int page,
 			int tab_no,
-			HttpServletResponse resp)
+			HttpServletResponse resp,
+			HttpServletRequest req)
 	{
-	System.out.println(tab_no+"탭번호");
+		try {
+			req.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		resp.setContentType("text/html; charset=UTF-8");
+		System.out.println(tab_no+"탭번호");
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("FAQ_TAB",tab_no);
 		JSONObject json = new JSONObject();
 		System.out.println("결과"+SCservice.getFAQList(params, page).toString());
 		json.append("result", SCservice.getFAQList(params, page));
-		try {
-			resp.getWriter().println(json);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		return json.toString();
 	}
 	
 	

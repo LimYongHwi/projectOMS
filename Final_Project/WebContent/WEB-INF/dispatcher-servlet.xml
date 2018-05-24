@@ -27,18 +27,14 @@
 
 
 <mvc:interceptor>
-<mvc:mapping path="/recruit_writeForm.do"/>
-<mvc:mapping path="/service_writeForm.do"/>
-<mvc:mapping path="/review_WriteForm.do"/>
-<mvc:mapping path="/info_WriteForm.do"/>
-<mvc:mapping path="/plan_writeForm.do"/>
-<mvc:mapping path="/recruit_refrence.do"/>
-<mvc:mapping path="/plan_refrence.do"/>
-<mvc:mapping path="/REM.do"/>
-<mvc:mapping path="/infoRCM.do"/>
-<mvc:mapping path="/writeREC_REP.do"/>
-<mvc:mapping path="/updateREC_REP.do"/>
-<mvc:mapping path="/deleteREC_REP.do"/>
+<mvc:mapping path="/*"/>
+<mvc:exclude-mapping path="/*download.do*"/>
+<mvc:exclude-mapping path="/*view.do"/>
+<mvc:exclude-mapping path="/*main.do*"/>
+<mvc:exclude-mapping path="/*joinform.do*"/>
+<mvc:exclude-mapping path="/*loginform.do*"/>
+<mvc:exclude-mapping path="/search.do*"/>
+<mvc:exclude-mapping path="/getFAQList.do*"/>
 <ref bean="loginInterceptor"/>
 </mvc:interceptor>
 </mvc:interceptors>

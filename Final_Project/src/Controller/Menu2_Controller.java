@@ -43,7 +43,7 @@ public class Menu2_Controller {
 	    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 	
-	@RequestMapping("review_Main.do")
+	@RequestMapping("review_main.do")
 	public ModelAndView review_Main(
 			@RequestParam(defaultValue="0") int type, // 0일떄 >>전체검색, 1제목 2내용 3제목+내용4작성자
 			@RequestParam(defaultValue="1") int page,
@@ -67,11 +67,11 @@ public class Menu2_Controller {
 			params.put("enddate", enddate);			
 		}
 		mav.addAllObjects(revService.getReviewList(params, page));
-		mav.setViewName("Review/Review_Main");
+		mav.setViewName("Review/review_Main");
 		return mav;
 	}
 	
-	@RequestMapping("review_WriteForm.do")
+	@RequestMapping("review_writeForm.do")
 	public ModelAndView review_WriteForm(HttpSession session){
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("Review/Review_WriteForm");
@@ -81,7 +81,7 @@ public class Menu2_Controller {
 	}
 	
 	
-	@RequestMapping("review_Write.do")
+	@RequestMapping("review_write.do")
 	public String review_Write(ReviewVO reviewVO, @RequestParam(required=false) MultipartFile ufile){
 		int num=revService.writeReview(reviewVO, ufile);
 		//세션에 아이디 확인해서 분개해서 보내

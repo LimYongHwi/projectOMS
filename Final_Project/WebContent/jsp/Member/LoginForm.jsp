@@ -227,7 +227,6 @@ input {
       <p class="text--center"><a href="#" id="SearchInfo">아이디/비밀번호 찾기</a> <span class="fontawesome-arrow-right"></span></p>
       <p class="text--center" id="resultMsg">${msg}</p>
       <p class="text--center" id="loginFlag">${loginFlag}</p>
-
     </div>
 
   </div>

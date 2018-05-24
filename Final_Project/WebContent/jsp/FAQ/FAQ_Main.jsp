@@ -29,22 +29,14 @@
 		$.ajax({
 			type: 'post',
 			url: 'getFAQList.do',
-			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-			dataType: 'json',
-			async : true,
 			data:{
 			"page":page,
-			"tab_no":tab_no},
-			
-			success:function(data){
-				console.dir(data)
-				var datas= data;
+			"tab_no":tab_no
+			},
+				success:function(data){
+				var datas= JSON.parse(data).result;
 				var tabname = ["-","모집/계획관련", "이벤트관련", "회원관련"];
-				
-				console.log(datas);
-				console.log(datas.result[0])
-				console.log(datas.result[0].List);
-				var list = datas.result[0].List;
+				var list = datas.List;
 				console.log(list.length);
 			   	$("#table_").empty();
 			   	if(list.length==0){
@@ -59,11 +51,13 @@
 					$("#table_").append("<td>"+list[i].FAQ_TITLE+"</td>");
 					$("#table_").append("</tr>");
 				}
-			   		
 			   	}
 				
 
 				
+			},
+			error:function(data){
+				alert('error');
 			}
 		});
 		

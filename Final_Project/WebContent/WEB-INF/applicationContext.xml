@@ -10,6 +10,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 <context:component-scan base-package="Service"/>
+
 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 <property name="url" value="jdbc:oracle:thin:@localhost:1521:koittOMS"/>

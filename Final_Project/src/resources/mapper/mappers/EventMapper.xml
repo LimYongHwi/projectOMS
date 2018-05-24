@@ -67,7 +67,7 @@
 	
 <!-- 	//리스트뽑기 -->
 <!-- 	public ArrayList<hashMap> getEventList(HashMap<String, Object> params); -->
-	<select id="getEventList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	<select id="getEventList" parameterType="HashMap" resultType="HashMap">
  	SELECT * FROM (
  	SELECT ROWNUM AS RN, A.* FROM(
  	SELECT * FROM EVENT 
@@ -105,7 +105,7 @@
 	
 <!-- 	// 전체 게시물 검색조건에 맞는 놈 카운트 -->
 <!-- 	public int getCountEvent(HashMap<String, Object> params); -->
-<select id="getCountEvent" parameterType="java.util.HashMap" resultType="int">
+<select id="getCountEvent" parameterType="HashMap" resultType="int">
  	SELECT COUNT(*) FROM (
  	SELECT ROWNUM AS RN, A.* FROM(
  	SELECT * FROM EVENT 

@@ -111,7 +111,7 @@
 		${STARTRN} AND ${ENDRN}
 	</select>
 
-	<select id="getInformationCount" parameterType="java.util.HashMap"
+	<select id="getInformationCount" parameterType="HashMap"
 		resultType="int">
 		SELECT COUNT(*) FROM ( SELECT ROWNUM AS RN, A.* FROM(
 		SELECT * FROM
@@ -144,13 +144,13 @@
 		)
 	</select>
 
-	<select id="infoseqcheck" resultType="integer">
+	<select id="infoseqcheck" resultType="int">
 		SELECT INFO_SEQ.currval
 		FROM DUAL
 	</select>
 
 
-	<insert id="insertInformation_Recommend" parameterType="java.util.HashMap">
+	<insert id="insertInformation_Recommend" parameterType="HashMap">
 		INSERT INTO INFORMATION_RECOMMEND VALUES(
 		INFO_RCM_SEQ.NEXTVAL,
 		#{M_ID,
@@ -169,7 +169,7 @@
 		)
 	</insert>
 
-	<update id="updateInformation_Recommend" parameterType="java.util.HashMap">
+	<update id="updateInformation_Recommend" parameterType="HashMap">
 		UPDATE
 		INFORMATION_RECOMMEND SET
 		INFO_RCM=#{INFO_RCM},
@@ -178,7 +178,7 @@
 		INFO_RCM_NO=#{INFO_RCM_NO}
 	</update>
 	
-	<update id="deleteInformation_Recommend" parameterType="java.util.HashMap">
+	<update id="deleteInformation_Recommend" parameterType="HashMap">
 		UPDATE
 		INFORMATION_RECOMMEND SET
 		INFO_RCM_DELETE_DATE= sysdate
@@ -186,7 +186,7 @@
 		INFO_RCM_NO=#{INFO_RCM_NO}
 	</update>
 
-	<select id="getInformation_Recommend" parameterType="java.util.HashMap"
+	<select id="getInformation_Recommend" parameterType="HashMap"
 		resultType="Information_RecommendVO">
 		SELECT * FROM INFORMATION_RECOMMEND
 		WHERE 1=0
@@ -202,7 +202,7 @@
 		AND INFO_RCM_DELETE_DATE IS NULL
 	</select>
 
-	<select id="getRCM" parameterType="java.util.HashMap"
+	<select id="getRCM" parameterType="HashMap"
 		resultType="int">
 		SELECT COUNT(*) FROM INFORMATION_RECOMMEND
 		WHERE
@@ -212,7 +212,7 @@
 		NULL
 	</select>
 
-	<select id="getUNRCM" parameterType="java.util.HashMap"
+	<select id="getUNRCM" parameterType="HashMap"
 		resultType="int">
 		SELECT COUNT(*) FROM INFORMATION_RECOMMEND
 		WHERE

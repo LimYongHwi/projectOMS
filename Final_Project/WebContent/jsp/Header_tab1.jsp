@@ -128,7 +128,7 @@
 <body class="headerbody">
 	<div class="slider">
 		<div>
-			<canvas id="title_img" width="1920px" height="320px"></canvas>
+			<canvas id="title_img" width="1920" height="320"></canvas>
 		</div>
 	</div>
 	<div class="top">

@@ -31,7 +31,7 @@ $(".title").text("리뷰게시판");
 
 <hr>
 <div>
-<form action="info_Write.do" enctype="multipart/form-data" method="post">
+<form action="info_write.do" enctype="multipart/form-data" method="post">
 
 <dl>
 <dt>제목</dt><dd><input type="text" name="INFO_TITLE"></dd>

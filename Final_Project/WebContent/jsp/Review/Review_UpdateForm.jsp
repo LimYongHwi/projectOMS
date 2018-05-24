@@ -30,7 +30,7 @@ $(".title").text("후기게시판");
 <hr>
 
 
-<form action="review_Update.do" enctype="multipart/form-data" method="post">
+<form action="review_update.do" enctype="multipart/form-data" method="post">
 <input type="hidden" name="REV_NO" value="${REV.REV_NO}">
 <dl>
 <dt>제목</dt><dd><input type="text" name="REV_TITLE" value="${REV.REV_TITLE}"></dd>

@@ -136,8 +136,8 @@
 		<div class="topmenu_inner">
 			<ul>
 				<li onclick="location.href='recruit_main.do'">모집/계획</li>|
-				<li onclick="location.href='review_Main.do'">여행정보/후기</li>|
-				<li onclick="location.href='service_center_main.do'">고객센터</li>|
+				<li onclick="location.href='review_main.do'">여행정보/후기</li>|
+				<li onclick="location.href='faq_main.do'">고객센터</li>|
 				<li id="icon"><img src="image/loupe.png" onclick="location.href='SearchForm.do'"></li>
 				<li id="icon"><img src="image/menu.png" class="fullMenu"></li>
 			</ul>
@@ -153,12 +153,13 @@
 		</div>
 		<div>
 			<ul>
-				<li onclick="location.href='info_Main.do'">여행정보게시판</li>
-				<li onclick="location.href='review_Main.do'">후기게시판</li>
+				<li onclick="location.href='info_main.do'">여행정보게시판</li>
+				<li onclick="location.href='review_main.do'">후기게시판</li>
 			</ul>
 		</div>
 		<div>
 			<ul>
+				<li onclick="location.href='faq_main.do'">FAQ</li>
 				<li onclick="location.href='notice_main.do'">공지사항</li>
 				<li onclick="location.href='service_center_main.do'">1:1문의</li>
 				<li onclick="location.href='event_main.do'">이벤트</li>

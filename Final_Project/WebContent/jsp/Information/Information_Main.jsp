@@ -119,7 +119,7 @@ $("#"+element).css("display",'none');
 		
 		<input type="submit" value="검색">
 		</form>
-		<button onclick="location.href='info_WriteForm.do'">글쓰기</button>
+		<button onclick="location.href='info_writeForm.do'">글쓰기</button>
 </div>
 </div>
 </body>

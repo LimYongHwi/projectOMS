@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+    <!-- 기본 레이아웃 -->
+    <definition name=".default" template="/site/defaultLayout.jsp"/>
+    <!-- 사용자 레이아웃 -->
+    <definition name=".limeDefault" template="/site/lime/limeLayout.jsp"/>
+<!--     client 레이 아웃 -->
+    <definition name=".clientDefault" template="/site/lime/clientLayout.jsp"/>
+</tiles-definitions>

@@ -131,8 +131,8 @@ ${INFO.INFO_NO}
 <input type="button" id="UNRCM"value="비추천하기" onclick="doRCM(1,${INFO.INFO_NO})">
 <%} %>
 <%if(mine){ %>
-<input type="button" value="수정" onclick="location.href='info_UpdateForm.do?INFO_NO=${INFO.INFO_NO}'">
-<input type="button" value="삭제" onclick="location.href='info_Delete.do?INFO_NO=${INFO.INFO_NO}'">
+<input type="button" value="수정" onclick="location.href='info_updateForm.do?INFO_NO=${INFO.INFO_NO}'">
+<input type="button" value="삭제" onclick="location.href='info_delete.do?INFO_NO=${INFO.INFO_NO}'">
 <%} %>
 <input type="button" value="전체목록" onclick="location.href='info_Main.do'"> 
 </div>

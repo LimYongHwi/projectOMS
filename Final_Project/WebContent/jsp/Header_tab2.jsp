@@ -29,7 +29,7 @@
 	   this.vy=-1;//증가값
 	   this.canvas=document.getElementById("title_img");
 	   this.context;
-	   
+
 	   this.setClear=function(){
 		   this.context=this.canvas.getContext("2d");
 	   }
@@ -40,20 +40,23 @@
 	   }
 	   
 	   this.draw=function(){
-		 
-	       var draws=this;
-		   draws.setClear();
-		   if(draws.img==null){
-    		   draws.setImg();
-    	   }
-	       setInterval(function(){
-	       draws.y=draws.y-draws.vy;
-	       draws.context.drawImage(draws.img, 0, draws.y);
-	       if(draws.y>0)//최소값
-	    	   draws.vy=draws.vy*-1;
-	     else if(draws.y<-200)//max값
-	    	   draws.vy=draws.vy*-1;
-	       },30)
+		       var draws=this;
+			   draws.setClear();
+			   
+			   if(draws.img==null){
+	    		   draws.setImg();
+	    	   }
+			   
+		       setInterval(function(){
+		    	   
+		       draws.y=draws.y-draws.vy;
+		       draws.context.drawImage(draws.img, 0, draws.y);
+		       
+		       if(draws.y>0)//최소값
+		    	   draws.vy=draws.vy*-1;
+		   	   else if(draws.y<-200)//max값
+		    	   draws.vy=draws.vy*-1;
+		       },30)
 	   }
 	}
 	
@@ -148,8 +151,8 @@
 		<div class="topmenu_inner">
 			<ul>
 				<li onclick="location.href='recruit_main.do'">모집/계획</li>|
-				<li onclick="location.href='review_Main.do'">여행정보/후기</li>|
-				<li onclick="location.href='service_center_main.do'">고객센터</li>|
+				<li onclick="location.href='review_main.do'">여행정보/후기</li>|
+				<li onclick="location.href='faq_main.do'">고객센터</li>|
 				<li id="icon"><img src="image/loupe.png"
 					onclick="location.href='SearchForm.do'"></li>
 				<li id="icon"><img src="image/menu.png" class="fullMenu"></li>
@@ -166,12 +169,13 @@
 		</div>
 		<div>
 			<ul>
-				<li onclick="location.href='info_Main.do'">여행정보게시판</li>
-				<li onclick="location.href='review_Main.do'">후기게시판</li>
+				<li onclick="location.href='info_main.do'">여행정보게시판</li>
+				<li onclick="location.href='review_main.do'">후기게시판</li>
 			</ul>
 		</div>
 		<div>
 			<ul>
+				<li onclick="location.href='faq_main.do'">FAQ</li>
 				<li onclick="location.href='notice_main.do'">공지사항</li>
 				<li onclick="location.href='service_center_main.do'">1:1문의</li>
 				<li onclick="location.href='event_main.do'">이벤트</li>

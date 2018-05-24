@@ -52,9 +52,9 @@ text-decoration: none;
 </div>
 <ul>
 <li class="sub_review">
-<a href='review_Main.do'> 후기게시판 </a>
+<a href='review_main.do'> 후기게시판 </a>
 </li>
-<li class="sub_info"><a href='info_Main.do'>여행정보게시판</a></li>
+<li class="sub_info"><a href='info_main.do'>여행정보게시판</a></li>
 </ul>
 </div>
 </body>

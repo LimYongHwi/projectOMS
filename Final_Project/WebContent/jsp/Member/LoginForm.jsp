@@ -166,10 +166,16 @@ input {
  $(document).ready(function(){
 	  var timer=setInterval(function(){
 		  var id= "<%= (String)session.getAttribute("id")%>";
+		  var ispop= (boolean)$("input[name=ispop]").val();
+			console.log(ispop)
 		  if(id != "null"){
+			  if(ispop=='true'||ispop==true){
 			  clearInterval(timer);
 			  opener.parent.location.href="main.do?id="+id;
   			  window.close();
+			  }else{
+				 location.replace("main.do");
+			  }
 		}
 	  },10);
 	 
@@ -206,7 +212,7 @@ input {
     <div class="grid__container">
 
       <form action="login.do" method="post" class="form form--login">
-
+			<input type="text" name="ispop" value="${ispop}">
         <div class="form__field">
           <label for="login__username"><i class="fas fa-user"></i><span class="hidden">Username</span></label>
           <input id="login__username" name ="m_id" type="text" class="form__input" placeholder="아이디" required>

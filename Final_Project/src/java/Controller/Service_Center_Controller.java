@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
+import Service.DownloadView;
 import Service.Service_Center_Service;
 import VO.FAQVO;
 import VO.MemberVO;

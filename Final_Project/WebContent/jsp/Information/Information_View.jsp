@@ -134,7 +134,7 @@ ${INFO.INFO_NO}
 <input type="button" value="수정" onclick="location.href='info_updateForm.do?INFO_NO=${INFO.INFO_NO}'">
 <input type="button" value="삭제" onclick="location.href='info_delete.do?INFO_NO=${INFO.INFO_NO}'">
 <%} %>
-<input type="button" value="전체목록" onclick="location.href='info_Main.do'"> 
+<input type="button" value="전체목록" onclick="location.href='info_main.do'"> 
 </div>
 </div>
 </body>

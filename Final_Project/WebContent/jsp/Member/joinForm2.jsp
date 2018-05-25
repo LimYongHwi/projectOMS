@@ -263,7 +263,7 @@
 <div class="btn_box">
 <input type="submit" value="가입" id="sub_btn">
 <input type="reset" value="다시 작성">
-<input type="button" value="뒤로">
+<input type="button" value="뒤로" onclick="javaScript:history.back()">
 <!-- <button id="reset">다시 작성</button> -->
 <!-- <button id="back">뒤로</button> -->
 </div>

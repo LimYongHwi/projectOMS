@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.text.html.HTMLDocument.Iterator;
@@ -40,12 +41,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
+import Service.DownloadView;
 import Service.Member_Service;
 import Service.PhotoService;
 import VO.CommentVO;
 import VO.MemberVO;
 import VO.PhotoVO;
-import Controller.DownloadView;
 
 @Controller
 public class MemberController {
@@ -73,8 +74,11 @@ public class MemberController {
 	
 	//로그인 페이지 요청
 	@RequestMapping("loginform.do")
-	public String showLoinForm() {
-		return "Member/LoginForm";
+	public ModelAndView showLoinForm(@RequestParam(defaultValue="true")boolean ispop) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("ispop",ispop);
+		mav.setViewName("Member/LoginForm");
+		return mav;
 	}
 	
 	//아이디/비밀번호 찾기 페이지 요청
@@ -186,7 +190,7 @@ public class MemberController {
 	
     //로그인 처리
 	@RequestMapping("login.do") //2: 아이디 없음 1:정상 3:비번틀림
-	public ModelAndView tryLogin(HttpSession session,String m_id,String m_password) {
+	public ModelAndView tryLogin(HttpSession session,String m_id,String m_password,HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		MemberVO mv=new MemberVO(m_id,m_password);
 		int result = memberSvc.checkPw(mv);

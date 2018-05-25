@@ -21,7 +21,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		String userId = (String) session.getAttribute("id");
 		if(userId == null)
 		{
-			response.sendRedirect("loginform.do");
+			response.sendRedirect("loginform.do?ispop=false");
 			return false;
 		}
 		return true;

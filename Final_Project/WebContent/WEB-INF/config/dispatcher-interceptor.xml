@@ -23,6 +23,8 @@
 			<mvc:exclude-mapping path="/*loginform.do*" />
 			<mvc:exclude-mapping path="/search.do*" />
 			<mvc:exclude-mapping path="/getFAQList.do*" />
+			<mvc:exclude-mapping path="/loginform.do*"/>
+			<mvc:exclude-mapping path="/login.do*"/>
 			<ref bean="loginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

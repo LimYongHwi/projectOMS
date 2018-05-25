@@ -82,6 +82,27 @@
 			}
 		}
 
+   	
+   		$('#login').click(function(){
+   			if($("#login").html=="로그인"){
+   				
+   			}
+   			else{
+   				
+   			}
+     	  var id= "<%=(String) session.getAttribute("id")%>";
+     	  console.log(id);
+     	  console.log(id=="null");
+     	  if(id=="null"){
+     		  url="loginform.do"
+     	    	  window.open(url,"ChildLoginWin","width=500 height=400 top=200px left=500px");
+     	  }else{
+     		  $('#login').html("로그인");
+         	  $('#join').html("회원가입");
+         	  location.href="logout.do?id="+id;
+     	  }
+     	});
+   	
 		$('#join').click(function() {
 			if (id == "null") {
 				location.href = "joinform.do";

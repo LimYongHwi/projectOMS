@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
+import Service.DownloadView;
 import Service.Event_Service;
 import Service.Information_Service;
 import Service.Member_Service;
@@ -25,7 +26,6 @@ import Service.Recruit_Service;
 import Service.Review_Service;
 import Service.Service_Center_Service;
 import VO.MemberVO;
-import Controller.DownloadView;
 
 @Controller
 public class MainController {

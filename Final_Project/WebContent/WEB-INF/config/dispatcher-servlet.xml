@@ -12,6 +12,12 @@
 	<context:component-scan base-package="Service"/>
 	<context:component-scan base-package="Interceptor"/>
 	
+	
+<bean id="jsonView"
+ class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+ <property name="contentType" value="application/json;charset=UTF-8" />
+</bean>
+
 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 <property name="prefix" value="jsp/"/>
 <property name="suffix" value=".jsp"/>

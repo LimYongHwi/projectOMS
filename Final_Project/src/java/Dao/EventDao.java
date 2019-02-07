@@ -8,23 +8,23 @@ import VO.FAQVO;
 import VO.Service_CenterVO;
 
 public interface EventDao {
-	//ë©¤ë²„ë‹¨.
+	//¸â¹ö´Ü.
 	public int insertEvent(EventVO event);
-	//ì—…ë°ì´íŠ¸
+	//¾÷µ¥ÀÌÆ®
 	public int updateEvent(EventVO event);
-	//ì‚­ì œ
+	//»èÁ¦
 	public int deleteEvent(EventVO event);
 	
-	//í•˜ë‚˜ë½‘ê¸°
+	//ÇÏ³ª»Ì±â
 	public EventVO selectOneEvent(EventVO event);
 	
-	//ë¦¬ìŠ¤íŠ¸ë½‘ê¸°
+	//¸®½ºÆ®»Ì±â
 	public ArrayList<HashMap<String, Object>> getEventList(HashMap<String, Object> params);
 	
-	//ì‹œí€€ìŠ¤ì— ë‹¤ìŒë²ˆí˜¸ ë½‘ì„ë†ˆ
+	//½ÃÄö½º¿¡ ´ÙÀ½¹øÈ£ »ÌÀ»³ğ
 	public int getEventSeqNum();
 	
-	// ì „ì²´ ê²Œì‹œë¬¼ ê²€ìƒ‰ì¡°ê±´ì— ë§ëŠ” ë†ˆ ì¹´ìš´íŠ¸
+	// ÀüÃ¼ °Ô½Ã¹° °Ë»öÁ¶°Ç¿¡ ¸Â´Â ³ğ Ä«¿îÆ®
 	public int getCountEvent(HashMap<String, Object> params);
 	
 }

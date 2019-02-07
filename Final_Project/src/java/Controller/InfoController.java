@@ -23,11 +23,11 @@ import VO.InformationVO;
 public class InfoController {
 	@Autowired
 	Information_Service infoService;
-	////////////////ì—¬í–‰ì •ë³´ê²Œì‹œíŒ//////
-
+	////////////////¿©ÇàÁ¤º¸°Ô½ÃÆÇ//////
+	
 	@RequestMapping("info_main.do")
 	public ModelAndView info_Main(
-			@RequestParam(defaultValue="0") int type, // 0ì¼ë–„ >>ì „ì²´ê²€ìƒ‰, 1ì œëª© 2ë‚´ìš© 3ì œëª©+ë‚´ìš©4ì‘ì„±ì
+			@RequestParam(defaultValue="0") int type, // 0ÀÏ‹š >>ÀüÃ¼°Ë»ö, 1Á¦¸ñ 2³»¿ë 3Á¦¸ñ+³»¿ë4ÀÛ¼ºÀÚ
 			@RequestParam(defaultValue="1") int page,
 			@RequestParam(required=false) String keyword,
 			@RequestParam(required=false) Date startdate,
@@ -59,7 +59,7 @@ public class InfoController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("Information/Information_WriteForm");
 		mav.addObject("M_ID",session.getAttribute("id"));		
-		//ì„¸ì…˜ì— ì•„ì´ë”” í™•ì¸í•´ì„œ ë¶„ê°œí•´ì„œ ë³´ë‚´
+		//¼¼¼Ç¿¡ ¾ÆÀÌµğ È®ÀÎÇØ¼­ ºĞ°³ÇØ¼­ º¸³»
 		return mav;
 	}
 
@@ -118,7 +118,7 @@ public class InfoController {
 		if(id!=null){
 		HashMap<String, Object> params = new HashMap<>();
 		char INFO_RCM='Y';
-		if(isRCM==1){ //1ì´ë©´ë¹„ì¶”
+		if(isRCM==1){ //1ÀÌ¸éºñÃß
 			INFO_RCM='N';
 		}
 		params.put("INFO_RCM", INFO_RCM);

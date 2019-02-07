@@ -19,11 +19,11 @@ public interface PhotoDao {
 	//
 	public Photo_LikeVO selectPhoto_Like(PhotoVO photo, MemberVO member);
 	
-	//ì¢‹ì•„ìš” ê°¯ìˆ˜ë½‘ê¸°
+	//ÁÁ¾Æ¿ä °¹¼ö»Ì±â
 	public int getPhoto_Like(PhotoVO photo);
 	public int getCount(String id);
 	
-	//ì²˜ìŒ ê²Œì‹œë¬¼ê³¼ ë§ˆì§€ë§‰ ê²Œì‹œë¬¼ ë²ˆí˜¸
+	//Ã³À½ °Ô½Ã¹°°ú ¸¶Áö¸· °Ô½Ã¹° ¹øÈ£
 	public HashMap<String, Object> getFirstAndLastNumber(PhotoVO photo);
 	public int selectCommtTotalCount(PhotoVO photo);
 	public void insertComment(CommentVO commt);

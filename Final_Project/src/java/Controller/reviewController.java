@@ -44,7 +44,7 @@ public class reviewController {
 	
 	@RequestMapping("review_main.do")
 	public ModelAndView review_Main(
-			@RequestParam(defaultValue="0") int type, // 0ì¼ë–„ >>ì „ì²´ê²€ìƒ‰, 1ì œëª© 2ë‚´ìš© 3ì œëª©+ë‚´ìš©4ì‘ì„±ì
+			@RequestParam(defaultValue="0") int type, // 0ÀÏ‹š >>ÀüÃ¼°Ë»ö, 1Á¦¸ñ 2³»¿ë 3Á¦¸ñ+³»¿ë4ÀÛ¼ºÀÚ
 			@RequestParam(defaultValue="1") int page,
 			@RequestParam(required=false) String keyword,
 			@RequestParam(required=false) Date startdate,
@@ -76,7 +76,7 @@ public class reviewController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("Review/Review_WriteForm");
 		mav.addObject("M_ID",session.getAttribute("id"));		
-		//ì„¸ì…˜ì— ì•„ì´ë”” í™•ì¸í•´ì„œ ë¶„ê°œí•´ì„œ ë³´ë‚´
+		//¼¼¼Ç¿¡ ¾ÆÀÌµğ È®ÀÎÇØ¼­ ºĞ°³ÇØ¼­ º¸³»
 		return mav;
 	}
 	
@@ -84,7 +84,7 @@ public class reviewController {
 	@RequestMapping("review_write.do")
 	public String review_Write(ReviewVO reviewVO, @RequestParam(required=false) MultipartFile ufile){
 		int num=revService.writeReview(reviewVO, ufile);
-		//ì„¸ì…˜ì— ì•„ì´ë”” í™•ì¸í•´ì„œ ë¶„ê°œí•´ì„œ ë³´ë‚´
+		//¼¼¼Ç¿¡ ¾ÆÀÌµğ È®ÀÎÇØ¼­ ºĞ°³ÇØ¼­ º¸³»
 		return "redirect:review_view.do?num="+num;
 	}
 	
@@ -138,7 +138,7 @@ public class reviewController {
 	{
 		HashMap<String, Object> params = new HashMap<>();
 		char REV_RCM='Y';
-		if(isREM==1){ //1ì´ë©´ë¹„ì¶”
+		if(isREM==1){ //1ÀÌ¸éºñÃß
 			REV_RCM='N';
 		}
 		params.put("REV_RCM", REV_RCM);

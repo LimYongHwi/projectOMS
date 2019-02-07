@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.text.html.HTMLDocument.Iterator;
+import javax.xml.ws.ResponseWrapper;
 
-import org.apache.catalina.connector.Request;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -60,19 +60,22 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender mailSender;
 		
-	//íšŒì›ê°€ì…í˜ì´ì§€ ìš”ì²­
+	@Autowired
+	private MappingJackson2JsonView jsonView; 
+	
+	//È¸¿ø°¡ÀÔÆäÀÌÁö ¿äÃ»
 	@RequestMapping("joinform.do")
 	public String showJoinForm(){
 		return "Member/joinForm2";
 	}
 	
-	//ì•„ì´ë”” ì¤‘ë³µ ê²€ì‚¬ í˜ì´ì§€ ìš”ì²­ 
+	//¾ÆÀÌµğ Áßº¹ °Ë»ç ÆäÀÌÁö ¿äÃ» 
 	@RequestMapping("idChkForm.do")
 	public String duplChkForm(){
 		return "Member/Id_chk";
 	}
 	
-	//ë¡œê·¸ì¸ í˜ì´ì§€ ìš”ì²­
+	//·Î±×ÀÎ ÆäÀÌÁö ¿äÃ»
 	@RequestMapping("loginform.do")
 	public ModelAndView showLoinForm(@RequestParam(defaultValue="true")boolean ispop) {
 		ModelAndView mav = new ModelAndView();
@@ -81,16 +84,16 @@ public class MemberController {
 		return mav;
 	}
 	
-	//ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° í˜ì´ì§€ ìš”ì²­
+	//¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£ Ã£±â ÆäÀÌÁö ¿äÃ»
 	@RequestMapping("searchMyInfo.do")
 	public String showSearMyinfo() {
 		return "Member/SearchMyInfo";
 	}
 	
-	//íšŒì› ê°€ì… ìš”ì²­
+	//È¸¿ø °¡ÀÔ ¿äÃ»
 	@RequestMapping("join.do")
 	public String joinMember(MemberVO member,@RequestParam("ufile") MultipartFile ufile){
-		System.out.println("join.doì„"+member.toString());
+		System.out.println("join.doÀÓ"+member.toString());
 		if(member.getM_PRIVATE()=='\0'){
 			member.setM_PRIVATE('N');
 		}
@@ -99,7 +102,7 @@ public class MemberController {
 	};
 	
 	
-	//ì¤‘ë³µì²´í¬
+	//Áßº¹Ã¼Å©
 	@RequestMapping(value="duplChk.do", method=RequestMethod.GET)
 	 @ResponseBody 
 	public void dupl(String m_id,HttpServletResponse resp){
@@ -110,17 +113,16 @@ public class MemberController {
 		resp.setCharacterEncoding("UTF-8");
 			
 				if(memberSvc.selectOneMember(mv)==null){
-					msg= "ì‚¬ìš© ê°€ëŠ¥í•œ ì•„ì´ë”” ì…ë‹ˆë‹¤.";
+					msg= "»ç¿ë °¡´ÉÇÑ ¾ÆÀÌµğ ÀÔ´Ï´Ù.";
 					flag="true";
 				}else {
-					msg="ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ì•„ì´ë””ì…ë‹ˆë‹¤.";
+					msg="ÀÌ¹Ì Á¸ÀçÇÏ´Â ¾ÆÀÌµğÀÔ´Ï´Ù.";
 					flag="false";
 				}
 				
 				obj.append("msg",msg);
 				obj.append("flag",flag);
 				try {
-					
 					resp.getWriter().print(obj);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -128,7 +130,7 @@ public class MemberController {
 				}
 		}
 
-		//í”„ë¡œí•„ ë·° ìš”ì²­
+		//ÇÁ·ÎÇÊ ºä ¿äÃ»
 		@RequestMapping("m_Info.do")
 		public ModelAndView showMinfo(MemberVO member){
 			System.out.println(member.toString());
@@ -139,7 +141,7 @@ public class MemberController {
 			return mav;
 		}
 		
-		//ì—…ë°ì´íŠ¸í¼ ìš”ì²­
+		//¾÷µ¥ÀÌÆ®Æû ¿äÃ»
 			@RequestMapping(value="updateForm.do",method = RequestMethod.POST)
 			@ResponseBody 
 			public void showMyPage(HttpSession session,HttpServletResponse resp){
@@ -188,37 +190,52 @@ public class MemberController {
 					
 				}
 	
-    //ë¡œê·¸ì¸ ì²˜ë¦¬
-	@RequestMapping("login.do") //2: ì•„ì´ë”” ì—†ìŒ 1:ì •ìƒ 3:ë¹„ë²ˆí‹€ë¦¼
-	public ModelAndView tryLogin(HttpSession session,String m_id,String m_password,HttpServletRequest req) {
-		ModelAndView mav = new ModelAndView();
+    //·Î±×ÀÎ Ã³¸® 	ajax·Î º¯È¯
+	@RequestMapping(value="login.do") //2: ¾ÆÀÌµğ ¾øÀ½ 1:Á¤»ó 3:ºñ¹øÆ²¸²
+	@ResponseBody
+	public void tryLogin(HttpSession session,String m_id,String m_password, HttpServletRequest req, HttpServletResponse resp){
 		MemberVO mv=new MemberVO(m_id,m_password);
+		String flag = "1";
+		String msg = "";
+		String id = "";
 		int result = memberSvc.checkPw(mv);
 		switch(result){
 		case 1:{
 			session.setAttribute("id", m_id);
-			mav.addObject("flag", "1");
+			id=  m_id;
 			break;
 		}
 		case 2:{
-			mav.addObject("msg", "ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´ë”” ì…ë‹ˆë‹¤.");
-			mav.addObject("flag", "2");
+			msg = "Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµğ ÀÔ´Ï´Ù.";
+			flag =  "2";
 			break;
 		}
 		case 3:{
-			mav.addObject("msg", "ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
-			mav.addObject("flag", "3");
+			msg = "ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.";
+			flag =  "3";
 			break;
 		}
 		case 4:{
-			mav.addObject("flag","1");
+			id=  m_id;
 			session.setAttribute("id", m_id);
 			session.setAttribute("admin", 'Y');
 			break;
 		}
+		}			
+		
+		
+		JSONObject obj = new JSONObject();
+		resp.setCharacterEncoding("UTF-8");
+		obj.put("id", id);
+		obj.put("msg",msg);
+		obj.put("flag",flag);
+		try {
+			resp.getWriter().print(obj);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		mav.setViewName("Member/LoginForm");			
-		return mav;
+		
 	}
 	
 	@RequestMapping("logout.do")
@@ -227,7 +244,7 @@ public class MemberController {
 		return "redirect:main.do";
 	}
 	
-	//ì •ë³´ ìˆ˜ì •
+	//Á¤º¸ ¼öÁ¤
 	@RequestMapping("update.do")
 	public ModelAndView updateMemberInfo(MemberVO member,@RequestParam("ufile") MultipartFile ufile) {
 		ModelAndView mav = new ModelAndView();
@@ -247,12 +264,12 @@ public class MemberController {
 	
 	@RequestMapping("photodownload.do")
 	public View phtDownload(PhotoVO photo) {
-		System.out.println("ì»¨íŠ¸ë¡¤ëŸ¬ : " +photo);
+		System.out.println("ÄÁÆ®·Ñ·¯ : " +photo);
 		View view = new DownloadView(photoSvc.getAttachFiles(photo));
 		return view;
 	}
 	
-	//ë§ˆì´í˜ì´ì§€
+	//¸¶ÀÌÆäÀÌÁö
 	@RequestMapping("my.do")
 	public ModelAndView showMymain(HttpSession session) {
 		String m_id = (String)session.getAttribute("id");
@@ -263,7 +280,7 @@ public class MemberController {
 		return mav;
 	}
 	
-	//ë§ˆì´ ì•¨ë²”
+	//¸¶ÀÌ ¾Ù¹ü
 	@RequestMapping(value="myAlbum.do",method=RequestMethod.GET) 
 	public ModelAndView showAlbum(String id,String s_id,HttpSession session,
 			@RequestParam(defaultValue = "1") int page,
@@ -298,7 +315,7 @@ public class MemberController {
 		return mav;
 	}
 	
-	//ì‚¬ì§„ ìƒì„¸ ë·° ìš”ì²­
+	//»çÁø »ó¼¼ ºä ¿äÃ»
 	@RequestMapping("inDetail.do")
 	public ModelAndView showDetail(int photo_no,HttpSession session) {
 		String  m_id = (String)session.getAttribute("id");
@@ -307,13 +324,13 @@ public class MemberController {
 		MemberVO mv = new MemberVO(m_id); 
 		PhotoVO photo = new PhotoVO(photo_no);
 		photo =  photoSvc.getPhoto(photo);
-		System.out.println("ì—¬ê¸°ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬. í¬í† ì˜ M_ID :   " + photo.getM_ID());
+		System.out.println("¿©±â´Â ÄÁÆ®·Ñ·¯. Æ÷ÅäÀÇ M_ID :   " + photo.getM_ID());
 		
 		ArrayList<CommentVO> list= new ArrayList<>();
 		list = photoSvc.selectComments(photo);
 		
 		for(int i=0 ; i< list.size();i++) {
-			System.out.println("â˜…â˜…ëŒ“ê¸€ë¦¬ìŠ¤íŠ¸:   "+ list.get(i).toString());
+			System.out.println("¡Ú¡Ú´ñ±Û¸®½ºÆ®:   "+ list.get(i).toString());
 		}
 		
 		
@@ -326,7 +343,7 @@ public class MemberController {
 		return mav;
 	}
 	
-	//ëŒ“ê¸€ ë“±ë¡
+	//´ñ±Û µî·Ï
 	 @RequestMapping(value="commt_write.do", method=RequestMethod.POST)
 	 public void writeComment(@RequestParam("COMMT_CONTENT")String commt_content,
 			 				  @RequestParam("id")String id,
@@ -371,7 +388,7 @@ public class MemberController {
 		MemberVO mv = new MemberVO(M_ID);
 		  mv = memberSvc.selectOneMember(mv);
 		  String password = mv.getM_PASSWORD();
-		  mailText= "íšŒì›ë‹˜ì˜ ë¹„ë°€ë²ˆí˜¸ëŠ”" + password + "ì…ë‹ˆë‹¤.";
+		  mailText= "È¸¿ø´ÔÀÇ ºñ¹Ğ¹øÈ£´Â" + password + "ÀÔ´Ï´Ù.";
 		  System.out.println(password);
 		  System.out.println(mAddress);
 		}
@@ -383,7 +400,7 @@ public class MemberController {
 			System.out.println(list.get(0));
 			mv = list.get(0);
 			String memberId = mv.getM_ID();
-			 mailText= "íšŒì›ë‹˜ì˜ ì•„ì´ë””ëŠ”" + memberId + "ì…ë‹ˆë‹¤.";
+			 mailText= "È¸¿ø´ÔÀÇ ¾ÆÀÌµğ´Â" + memberId + "ÀÔ´Ï´Ù.";
 ;			 System.out.println(memberId);
 			  System.out.println(mAddress);
 		}
@@ -393,7 +410,7 @@ public class MemberController {
 		                        = new MimeMessageHelper(message, true, "UTF-8");
 		      messageHelper.setFrom("chonami89@gmail.com");  
 		      messageHelper.setTo(mAddress);  
-		      messageHelper.setSubject("ì˜¤ë§ˆì˜ë¡œ ìš”ì²­í•˜ì‹   ì •ë³´ ì…ë‹ˆë‹¤."); 
+		      messageHelper.setSubject("¿À¸¶½î·Î ¿äÃ»ÇÏ½Å  Á¤º¸ ÀÔ´Ï´Ù."); 
 		      messageHelper.setText(mailText); 
 		      mailSender.send(message);
 		    } catch(Exception e){
@@ -434,7 +451,7 @@ public class MemberController {
 		photo.setPHOTO_TITLE(pHOTO_TITLE);
 		photo.setPHOTO_CONTENT(pHOTO_CONTENT);
 		photo.setPHOTO_PRIVATE('n');
-		System.out.println("ë‚´ìš©" + "" +photo.getPHOTO_CONTENT());
+		System.out.println("³»¿ë" + "" +photo.getPHOTO_CONTENT());
 		photoSvc.insertMemberPhoto(photo,mtfRequest);
 		
 		return "redirect:myAlbum.do";

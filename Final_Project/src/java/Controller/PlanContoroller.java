@@ -31,7 +31,7 @@ public class PlanContoroller {
 	Member_Service mService;
 	@Autowired
 	Plan_Service pService;
-	//========================ê³„íšë¶€ë¶„ =========================
+	//========================°èÈ¹ºÎºĞ =========================
 	
 	
 		@RequestMapping("plan_main.do")
@@ -72,7 +72,7 @@ public class PlanContoroller {
 			}
 		
 		
-		//ê³„íš ê¸€ì“°ê¸°í¼
+		//°èÈ¹ ±Û¾²±âÆû
 		@RequestMapping("plan_writeForm.do")
 		public ModelAndView plan_writeForm(HttpSession session){
 			String id=(String)session.getAttribute("id");
@@ -82,14 +82,14 @@ public class PlanContoroller {
 			mav.setViewName("Plan/Plan_WriteForm");
 			return mav;		
 		}
-		//ê³„íš ê¸€ì“°ê¸°
+		//°èÈ¹ ±Û¾²±â
 		@RequestMapping("plan_write.do")
 		public String plan_write(PlanVO plan,
 				@RequestParam("ufile")MultipartFile ufile){
 			return "redirect:plan_view.do?num="+pService.writePlan(plan, ufile);
 		}
 		
-		//ê³„íš ë·°í˜ì´ì§€
+		//°èÈ¹ ºäÆäÀÌÁö
 		@RequestMapping("plan_view.do")
 		public ModelAndView plan_view(int num,HttpSession session){
 			String id= null;
@@ -114,7 +114,7 @@ public class PlanContoroller {
 		
 		
 		
-		//ê³„íš ìˆ˜ì •í¼
+		//°èÈ¹ ¼öÁ¤Æû
 		@RequestMapping("plan_updateForm.do")
 		public ModelAndView plan_update(PlanVO plan){
 			ModelAndView mav = new ModelAndView();
@@ -141,7 +141,7 @@ public class PlanContoroller {
 			return "redirect:plan_main.do";
 		}
 		
-		//ì‹ ì²­ìëª©ë¡
+		//½ÅÃ»ÀÚ¸ñ·Ï
 		@RequestMapping(value="getPlanRefrenceList.do", method=RequestMethod.GET)
 		@ResponseBody
 		public void getPlanRefrenceList(
@@ -162,7 +162,7 @@ public class PlanContoroller {
 		}
 		}
 		
-		//ì‹ ì²­
+		//½ÅÃ»
 		@RequestMapping("plan_refrence.do")
 		public String recruit_refrence(Plan_ApplyVO plan, HttpSession session){
 			MemberVO m = new MemberVO();
@@ -179,7 +179,7 @@ public class PlanContoroller {
 		}
 		
 		
-		//í™•ì •
+		//È®Á¤
 		@RequestMapping(value="doPlanRefrence.do", method=RequestMethod.GET)
 		@ResponseBody
 		public void doPlanRefrence(
@@ -200,9 +200,9 @@ public class PlanContoroller {
 		String msg= "";
 		
 		if(result==-1){
-			msg="ì¸ì›ì´ ê½‰ì°¨ ìˆ˜ì •ë¶ˆê°€ëŠ¥ í•©ë‹ˆë‹¤.";
+			msg="ÀÎ¿øÀÌ ²ËÂ÷ ¼öÁ¤ºÒ°¡´É ÇÕ´Ï´Ù.";
 		}else{
-			msg="ìˆ˜ì •ì™„ë£Œ";
+			msg="¼öÁ¤¿Ï·á";
 		}
 		job.append("page", page);
 		job.append("result", msg);

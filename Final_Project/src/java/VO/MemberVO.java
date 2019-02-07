@@ -6,24 +6,24 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class MemberVO {
 
-	private int M_NO;            //ì¸ë±ìŠ¤
-	private String M_ID; 		 //ì•„ì´ë””
-	private String M_PASSWORD;	 //ë¹„ë°€ë²ˆí˜¸ 
-	private String M_NAME;		 //íšŒì› ì´ë¦„
-	private char M_GENDER;		 //ì„±ë³„
-	private String M_AGE;		 //ìƒë…„ì›”ì¼
-	private String M_PHONE;		 //í•¸ë“œí°ë²ˆí˜¸
-	private String M_EMAIL;	     //ì´ë©”ì¼ì£¼ì†Œ
-	private String M_NATION;	 //ê±°ì£¼êµ­ê°€
-	private String M_ADDRESS;	 //ê±°ì£¼ì§€ ì£¼ì†Œ
-	private int M_RANK;			 //ë“±ê¸‰
-	private String M_PROFILE;	 //í”„ë¡œí•„ ì‚¬ì§„
-	private char M_PRIVATE;		 //ì „í™”ë²ˆí˜¸ ê³µê°œì—¬ë¶€
-	private char M_ADMIN;		 //ê´€ë¦¬ì ì—¬ë¶€
-	private Date M_CREATE_DATE;	 //ê°€ì…ì¼ì
-	private Date M_UPDATE_DATE;	 //ì •ë³´ ìˆ˜ì • ì¼ì
-	private Date M_DELETE_DATE;	 //íƒˆí‡´ì¼ì
-	private MultipartFile uploadFile; //ë©€í‹°íŒŒì¼ 
+	private int M_NO;            //ÀÎµ¦½º
+	private String M_ID; 		 //¾ÆÀÌµğ
+	private String M_PASSWORD;	 //ºñ¹Ğ¹øÈ£ 
+	private String M_NAME;		 //È¸¿ø ÀÌ¸§
+	private char M_GENDER;		 //¼ºº°
+	private String M_AGE;		 //»ı³â¿ùÀÏ
+	private String M_PHONE;		 //ÇÚµåÆù¹øÈ£
+	private String M_EMAIL;	     //ÀÌ¸ŞÀÏÁÖ¼Ò
+	private String M_NATION;	 //°ÅÁÖ±¹°¡
+	private String M_ADDRESS;	 //°ÅÁÖÁö ÁÖ¼Ò
+	private int M_RANK;			 //µî±Ş
+	private String M_PROFILE;	 //ÇÁ·ÎÇÊ »çÁø
+	private char M_PRIVATE;		 //ÀüÈ­¹øÈ£ °ø°³¿©ºÎ
+	private char M_ADMIN;		 //°ü¸®ÀÚ ¿©ºÎ
+	private Date M_CREATE_DATE;	 //°¡ÀÔÀÏÀÚ
+	private Date M_UPDATE_DATE;	 //Á¤º¸ ¼öÁ¤ ÀÏÀÚ
+	private Date M_DELETE_DATE;	 //Å»ÅğÀÏÀÚ
+	private MultipartFile uploadFile; //¸ÖÆ¼ÆÄÀÏ 
 
 	public MemberVO() {
 

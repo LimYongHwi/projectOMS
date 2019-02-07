@@ -8,29 +8,29 @@ import VO.NoticeVO;
 import VO.Service_CenterVO;
 
 public interface Service_CenterDao {
-	//ë©¤ë²„ë‹¨.
+	//¸â¹ö´Ü.
 	public int insertService_Center(Service_CenterVO SC);
-	//ìš´ì˜ìëŠ” ì—…ë°ì´íŠ¸ë§Œ í•˜ë©´ë¨. / /ë‹µë³€ , ë‹µë³€ì¼ ë‹¬ì•„ì£¼ê³  ì œëª©ìˆ˜ì •, ê´€ë¦¬ìì•„ì´ë”” ë“±ë¡
+	//¿î¿µÀÚ´Â ¾÷µ¥ÀÌÆ®¸¸ ÇÏ¸éµÊ. / /´äº¯ , ´äº¯ÀÏ ´Ş¾ÆÁÖ°í Á¦¸ñ¼öÁ¤, °ü¸®ÀÚ¾ÆÀÌµğ µî·Ï
 	public int updateService_Center(Service_CenterVO SC);
 
 	public int deleteService_Center(Service_CenterVO SC);
 	public Service_CenterVO selectOneService_Center(Service_CenterVO SC);
 	public ArrayList<Service_CenterVO> getService_CenterList(HashMap<String, Object> params);
 	
-	// ì „ì²´ ê²Œì‹œë¬¼ ê²€ìƒ‰ì¡°ê±´ì— ë§ëŠ” ë†ˆ ì¹´ìš´íŠ¸
+	// ÀüÃ¼ °Ô½Ã¹° °Ë»öÁ¶°Ç¿¡ ¸Â´Â ³ğ Ä«¿îÆ®
 	public int getCountService(HashMap<String, Object> params);
 	
 	
 	// FAQ 
 	public int insertFAQ(FAQVO faq);
-	//ìš´ì˜ìëŠ” ì—…ë°ì´íŠ¸ë§Œ í•˜ë©´ë¨. / /ë‹µë³€ , ë‹µë³€ì¼ ë‹¬ì•„ì£¼ê³  ì œëª©ìˆ˜ì •, ê´€ë¦¬ìì•„ì´ë”” ë“±ë¡
+	//¿î¿µÀÚ´Â ¾÷µ¥ÀÌÆ®¸¸ ÇÏ¸éµÊ. / /´äº¯ , ´äº¯ÀÏ ´Ş¾ÆÁÖ°í Á¦¸ñ¼öÁ¤, °ü¸®ÀÚ¾ÆÀÌµğ µî·Ï
 	public int updateFAQ(FAQVO faq);
 
 	public int deleteFAQ(FAQVO faq);
 	public FAQVO selectOneFAQ(FAQVO faq);
 	public ArrayList<FAQVO> getFAQList(HashMap<String, Object> params);
 	
-	// ì „ì²´ ê²Œì‹œë¬¼ ê²€ìƒ‰ì¡°ê±´ì— ë§ëŠ” ë†ˆ ì¹´ìš´íŠ¸
+	// ÀüÃ¼ °Ô½Ã¹° °Ë»öÁ¶°Ç¿¡ ¸Â´Â ³ğ Ä«¿îÆ®
 	public int getCountFAQ(HashMap<String, Object> params);
 	
 	

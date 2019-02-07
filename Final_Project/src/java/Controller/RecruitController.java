@@ -51,7 +51,7 @@ public class RecruitController {
 	}
 	
 	
-	//ëª¨ì§‘ë©”ì¸
+	//¸ğÁı¸ŞÀÎ
 	@RequestMapping("recruit_main.do")
 	public String Recruit_main(
 			@RequestParam(defaultValue="0") int type ,
@@ -93,7 +93,7 @@ public class RecruitController {
 		return "Recruit/Recruit_Main";
 	}
 	
-	//ëª¨ì§‘ ê¸€ì“°ê¸°í¼
+	//¸ğÁı ±Û¾²±âÆû
 	@RequestMapping("recruit_writeForm.do")
 	public String Recruit_WriteForm(Model model,HttpSession session){
 		String id = (String)session.getAttribute("id");
@@ -103,7 +103,7 @@ public class RecruitController {
 	
 	
 	
-	//ëª¨ì§‘ ì‚­ì œ
+	//¸ğÁı »èÁ¦
 	@RequestMapping("recruit_delete.do")
 	public String recruit_Delete(RecruitVO recruit,HttpSession session){
 		String id= (String)session.getAttribute("id");
@@ -112,7 +112,7 @@ public class RecruitController {
 	}
 	
 	
-	//ëª¨ì§‘ ê¸€ì“°ê¸°
+	//¸ğÁı ±Û¾²±â
 	@RequestMapping("recruit_write.do")
 	public String recruit_write(String REC_CONTENT,
 			String M_ID,int REC_MEMBER_COUNT,String REC_DESTINATION,
@@ -224,9 +224,9 @@ public class RecruitController {
 	int result = recService.recruitConfirm(rea);
 	String msg= "";
 	if(result==-1){
-		msg="ì¸ì›ì´ ê½‰ì°¨ ìˆ˜ì •ë¶ˆê°€ëŠ¥ í•©ë‹ˆë‹¤.";
+		msg="ÀÎ¿øÀÌ ²ËÂ÷ ¼öÁ¤ºÒ°¡´É ÇÕ´Ï´Ù.";
 	}else{
-		msg="ìˆ˜ì •ì™„ë£Œ";
+		msg="¼öÁ¤¿Ï·á";
 	}
 	job.append("page", page);
 	job.append("result", msg);
@@ -247,7 +247,7 @@ public class RecruitController {
 		return view;
 	}
 	
-	//ëŒ“ê¸€ë¶€ë¶„
+	//´ñ±ÛºÎºĞ
 	
 	
 	@RequestMapping(value="getREC_REP.do", method={RequestMethod.GET, RequestMethod.POST})
@@ -281,7 +281,7 @@ public class RecruitController {
 		public String updateREC_REP(Recruit_ReplyVO rec_rep, HttpSession session){
 			rec_rep.setM_ID((String)session.getAttribute("id"));
 			int result=recService.updateReply(rec_rep);
-			System.out.println(result+"ê²°ê³¼");
+			System.out.println(result+"°á°ú");
 			return result+"";
 		}
 		

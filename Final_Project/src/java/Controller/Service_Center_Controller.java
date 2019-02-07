@@ -156,7 +156,7 @@ public class Service_Center_Controller {
 
 	@RequestMapping("faq_write.do")
 	public String writeFAQ(FAQVO faq) {
-		System.out.println("ë“¤ì–´ì˜´???");
+		System.out.println("µé¾î¿È???");
 		SCservice.writeFAQ(faq);
 		return "redirect:faq_main.do";
 

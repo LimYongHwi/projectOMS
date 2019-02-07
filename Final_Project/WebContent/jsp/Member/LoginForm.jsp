@@ -69,7 +69,7 @@ input {
   padding: 3rem 0;
 }
 
-.form input[type="password"], .form input[type="text"], .form input[type="submit"] {
+.form input[type="password"], .form input[type="text"],   #loginbtn {
   width: 100%;
 }
 .form--login {
@@ -78,7 +78,7 @@ input {
 .form--login label,
 .form--login input[type="text"],
 .form--login input[type="password"],
-.form--login input[type="submit"] {
+#loginbtn{
   border-radius: 0.25rem;
   padding: 1rem;
 }
@@ -97,13 +97,13 @@ input {
 .form--login input[type="text"]:focus, .form--login input[type="text"]:hover, .form--login input[type="password"]:focus, .form--login input[type="password"]:hover {
   background-color: #434A52;
 }
-.form--login input[type="submit"] {
+  #loginbtn {
   background-color:#6fe0eb;
   color: #f5f6f9;
   font-weight: bold;
   text-transform: uppercase;
 }
-.form--login input[type="submit"]:focus, .form--login input[type="submit"]:hover {
+  #loginbtn:focus,   #loginbtn:hover {
   background-color:#63cdd7;
   color:#f5f6f9;
 }
@@ -166,8 +166,7 @@ input {
  $(document).ready(function(){
 	  var timer=setInterval(function(){
 		  var id= "<%= (String)session.getAttribute("id")%>";
-		  var ispop= (boolean)$("input[name=ispop]").val();
-			console.log(ispop)
+		  var ispop= $("input[name=ispop]").val();
 		  if(id != "null"){
 			  if(ispop=='true'||ispop==true){
 			  clearInterval(timer);
@@ -184,18 +183,32 @@ input {
 		 self.close(); 
 	 });
 	 
-	$('lgnFrm').submit(function(){
-		var id= "<%= session.getAttribute("id")%>";
-		console.log(id);
-			if($('#loginFlag').val()==""){
-				alert('아이디와 비번을 모두 입력하세요.');
-				return false;
-			}else if($('#loginFlag').val()=="2"||$('#loginFlag').val()=="3"){
-				return false;
-			}else{
-				return true;		
-			}
-			});
+	$('#loginbtn').click(function(){
+			$.ajax({
+				url:'login.do',
+				type:'POST',
+				dataType: "json",
+				data:$('#loginForm').serialize(),
+				success:function(data){
+					console.log(data);
+					console.log(data.flag);
+					var flag = data.flag;					 					
+					if(flag=="2"||flag=="3"){
+						$('#resultMsg').html(data.msg);
+						return false;
+					}else{
+						 var ispop= $("input[name=ispop]").val();
+						  if(ispop=='true'||ispop==true){
+							  var id= data.id;
+							  opener.parent.location.href="main.do?id="+id;
+				  			  window.close();
+						  }else{
+							 location.replace("main.do");
+						  }
+					}
+				}					
+			})
+	});
 	
 	 $('#SearchInfo').click(function(){
 		 window.opener.location.href="searchMyInfo.do";
@@ -211,8 +224,8 @@ input {
 
     <div class="grid__container">
 
-      <form action="login.do" method="post" class="form form--login">
-			<input type="text" name="ispop" value="${ispop}">
+      <form id="loginForm" method="post" class="form form--login">
+			<input type="hidden" name="ispop" value="${ispop}">
         <div class="form__field">
           <label for="login__username"><i class="fas fa-user"></i><span class="hidden">Username</span></label>
           <input id="login__username" name ="m_id" type="text" class="form__input" placeholder="아이디" required>
@@ -224,7 +237,7 @@ input {
         </div>
 
         <div class="form__field">
-          <input type="submit" id="loginbtn" value="Log In">
+          <input type="button" id="loginbtn" value="Log In">
         </div>
 
       </form>
@@ -232,7 +245,6 @@ input {
       <p class="text--center">회원이 아니신가요? <a id="goJoin">회원가입</a> <span class="fontawesome-arrow-right"></span></p>
       <p class="text--center"><a href="#" id="SearchInfo">아이디/비밀번호 찾기</a> <span class="fontawesome-arrow-right"></span></p>
       <p class="text--center" id="resultMsg">${msg}</p>
-      <p class="text--center" id="loginFlag">${loginFlag}</p>
     </div>
 
   </div>

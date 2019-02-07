@@ -12,34 +12,34 @@ public interface RecruitDao {
 	public int updateRecruit(RecruitVO recruit);
 	public int deleteRecruit(RecruitVO recruit);
 	public RecruitVO selectOneRecruit(RecruitVO recruit);
-	//ëª¨ì§‘ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸ ë¿Œë ¤ì£¼ê¸° , StartPage, endPage , ë“±ë“± ë°›ì•„ì˜¤ê¸° 
+	//¸ğÁı°Ô½ÃÆÇ ¸®½ºÆ® »Ñ·ÁÁÖ±â , StartPage, endPage , µîµî ¹Ş¾Æ¿À±â 
 	public ArrayList<RecruitVO> getListRecruit(HashMap<String,Object> params);
 	public int getCount(HashMap<String,Object>params);
 	public int recseqcheck();
 	
 	
-	//í•´ì‰¬ë§µìœ¼ë¡œ ë°›ë˜ ëª¨ì§‘ê²Œì‹œíŒ ë²ˆí˜¸ì™€ ë©¤ë²„ ì•„ì´ë”” ë¥¼ í•¨ê»˜ ì €ì¥,, ê¸°ë³¸ìœ¼ë¡œ í™•ì •ì—¬ë¶€ëŠ” false>>(0,1)
+	//ÇØ½¬¸ÊÀ¸·Î ¹ŞµÇ ¸ğÁı°Ô½ÃÆÇ ¹øÈ£¿Í ¸â¹ö ¾ÆÀÌµğ ¸¦ ÇÔ²² ÀúÀå,, ±âº»À¸·Î È®Á¤¿©ºÎ´Â false>>(0,1)
 	public int insertRecruit_Apply(Recruit_ApplyVO recruit_Apply);
 	public int updateRecruit_Apply(Recruit_ApplyVO recruit_Apply);
 	public int deleteRecruit_Apply(Recruit_ApplyVO recruit_Apply);
-	//ì‹ ì²­ì²´í¬ìš©
+	//½ÅÃ»Ã¼Å©¿ë
 	public Recruit_ApplyVO getRecruit_Apply(Recruit_ApplyVO recruit_Apply);
-	//ì¸ì›ìˆ˜ ë±‰ì–´ì¤„êº¼ .. count()í•¨ìˆ˜ì‚¬ìš©
+	//ÀÎ¿ø¼ö ¹ñ¾îÁÙ²¨ .. count()ÇÔ¼ö»ç¿ë
 	public int getRecruit_ApplyCount(HashMap<String,Object> params);
-	//ì‹ ì²­í•œ ë¦¬ìŠ¤íŠ¸ ë±‰ì–´ì¤„ë†ˆ
+	//½ÅÃ»ÇÑ ¸®½ºÆ® ¹ñ¾îÁÙ³ğ
 	public ArrayList<HashMap<String,Object>> getRecruit_ApplyList(HashMap<String,Object> params);
-	//í™•ì •ëœ ì¸ì›ìˆ˜ ë±‰ì–´ì¤„ë†ˆ
+	//È®Á¤µÈ ÀÎ¿ø¼ö ¹ñ¾îÁÙ³ğ
 	public int getApplyCount(Recruit_ApplyVO recruit_ApplyVO);
 	
 	
-	//ëŒ“ê¸€ë¶€ë¶„..
+	//´ñ±ÛºÎºĞ..
 	public Recruit_ReplyVO selectRec_Rep(Recruit_ReplyVO rec_rep);
 	public int insertRec_Rep(Recruit_ReplyVO rec_rep);
 	public int updateRec_Rep(Recruit_ReplyVO rec_rep);
 	public int deleteRec_Rep(Recruit_ReplyVO rec_rep);
 	public ArrayList<HashMap<String,Object>> getRec_RepList(HashMap<String, Object> params);
 	public int getRec_RepCount(HashMap<String,Object> params);
-	//ìì‹ë…¸ë“œ ê°¯ìˆ˜ì²´í¬
+	//ÀÚ½Ä³ëµå °¹¼öÃ¼Å©
 	public int levelcheck(Recruit_ReplyVO rec_rep);
 	
 	

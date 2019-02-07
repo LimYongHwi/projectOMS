@@ -1,9 +1,7 @@
 package Controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,9 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
-import Service.DownloadView;
 import Service.Event_Service;
 import Service.Information_Service;
 import Service.Member_Service;
@@ -54,7 +50,7 @@ public class MainController {
 	public ModelAndView goMain(HttpSession session, String id) {
 		ModelAndView mav = new ModelAndView();
 		MemberVO member = new MemberVO(id);
-		if (id != null) {
+		if (id != null&&!id.equals("null")) {
 			session.setAttribute("id", id);
 			if (memberSvc.checkAdmin(member) == true) {
 				session.setAttribute("id", id);
@@ -110,10 +106,6 @@ public class MainController {
 			@RequestParam(defaultValue="5")String[] select,
 			@RequestParam(required=false)String keyword,
 			@RequestParam()HashMap<String, Object> params){
-		//전체검색부분  
-		
-		//타입에 따라서 분개, 타이틀 이름 컬럼명 ?<<테이블마다 다르기떄문에...문제있네//검색어로 title , content 이름 다 변경.
-		//
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("keyword", keyword);
 		mav.addObject("M_ID",M_ID);
@@ -136,12 +128,10 @@ public class MainController {
 			select[2]="3";
 			select[3]="4";
 		}
-		System.out.println("검색조건:"+params.toString());
 		for(String a:select){
 			switch(a){
 			case "1":
 				HashMap<String,Object> recruit=recService.getRecruitList(recPage, params);
-				System.out.println("mav에담길 recruit"+recruit);
 				mav.addObject("recruit",recruit);
 				mav.addObject("rec_check","checked");
 				break;

@@ -15,21 +15,21 @@ public interface PlanDao {
 	public ArrayList<PlanVO> getListPlan(HashMap<String, Object> params);
 	public int getListCount(HashMap<String, Object> params);
 	public int recseqcheck();
-	//í•´ì‰¬ë§µìœ¼ë¡œ ë°›ë˜ ëª¨ì§‘ê²Œì‹œíŒ ë²ˆí˜¸ì™€ ë©¤ë²„ ì•„ì´ë”” ë¥¼ í•¨ê»˜ ì €ì¥,, ê¸°ë³¸ìœ¼ë¡œ í™•ì •ì—¬ë¶€ëŠ” false>>(0,1)
+	//ÇØ½¬¸ÊÀ¸·Î ¹ŞµÇ ¸ğÁı°Ô½ÃÆÇ ¹øÈ£¿Í ¸â¹ö ¾ÆÀÌµğ ¸¦ ÇÔ²² ÀúÀå,, ±âº»À¸·Î È®Á¤¿©ºÎ´Â false>>(0,1)
 	public int insertPlan_Apply(Plan_ApplyVO Plan_Apply);
 	public int updatePlan_Apply(Plan_ApplyVO Plan_Apply);
 	public int deletePlan_Apply(Plan_ApplyVO Plan_Apply);
 	
-	//ì¸ì›ìˆ˜ ë±‰ì–´ì¤„êº¼ .. count()í•¨ìˆ˜ì‚¬ìš©
+	//ÀÎ¿ø¼ö ¹ñ¾îÁÙ²¨ .. count()ÇÔ¼ö»ç¿ë
 	public int getPlan_ApplyCount(HashMap<String,Object> params);
 	
-	//í•˜ë‚˜ì˜ ì‹ ì²­ë¦¬ìŠ¤íŠ¸ ì²´í¬ìš©
+	//ÇÏ³ªÀÇ ½ÅÃ»¸®½ºÆ® Ã¼Å©¿ë
 	public Plan_ApplyVO getPlan_Apply(Plan_ApplyVO plan_apply);
-	//ì‹ ì²­í•œ ë¦¬ìŠ¤íŠ¸ ë±‰ì–´ì¤„ë†ˆ
+	//½ÅÃ»ÇÑ ¸®½ºÆ® ¹ñ¾îÁÙ³ğ
 	public ArrayList<HashMap<String,Object>> getPlan_ApplyList(HashMap<String,Object> params);
 	
 	
-	//í™•ì •ëœ ì¸ì›ìˆ˜ ë±‰ì–´ì¤„ë†ˆ
+	//È®Á¤µÈ ÀÎ¿ø¼ö ¹ñ¾îÁÙ³ğ
 		public int getApplyCount(Plan_ApplyVO Plan_ApplyVO);
 	
 	

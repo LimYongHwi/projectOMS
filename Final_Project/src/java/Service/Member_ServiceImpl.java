@@ -54,7 +54,7 @@ public class Member_ServiceImpl implements Member_Service {
 		File dir = new File(path);
 
 		if (!dir.exists())
-			dir.mkdirs();// ì € ê²½ë¡œì— í´ë” ì—†ìœ¼ë©´ make directory
+			dir.mkdirs();// Àú °æ·Î¿¡ Æú´õ ¾øÀ¸¸é make directory
 
 		String fileName = ufile.getOriginalFilename();
 		System.out.println(fileName);
@@ -107,7 +107,7 @@ public class Member_ServiceImpl implements Member_Service {
 		File dir = new File(path);
 
 		if (!dir.exists())
-			dir.mkdirs();// ì € ê²½ë¡œì— í´ë” ì—†ìœ¼ë©´ make directory
+			dir.mkdirs();// Àú °æ·Î¿¡ Æú´õ ¾øÀ¸¸é make directory
 
 		String fileName = ufile.getOriginalFilename();
 		System.out.println(fileName);
@@ -127,7 +127,7 @@ public class Member_ServiceImpl implements Member_Service {
 
 	@Override
 	public MemberVO selectOneMember(MemberVO member) {
-		System.out.println("ì—¬ê¸°ëŠ” ì„œë¹„ìŠ¤  ì…€ë ‰íŠ¸ ì›ë©¤ë²„" + "  " + member.getM_ID());
+		System.out.println("¿©±â´Â ¼­ºñ½º  ¼¿·ºÆ® ¿ø¸â¹ö" + "  " + member.getM_ID());
 		return mDao.selectOneMember(member);
 	}
 
